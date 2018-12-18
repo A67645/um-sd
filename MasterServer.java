@@ -26,6 +26,7 @@ class Server{
 	float requestPrice;
 	float auctionPrice;
 	char inUse;
+	char type;
 	String freeCode;
 	
 	
@@ -48,16 +49,13 @@ class clientHandler extends Thread {
 	BufferedReader in = new BufferedReader(new InputStreamReader(cs.getInputStream()));	
 	
 	Map<String,User> users;
-	Map<int,Server> serversType1;
-	Map<int,Server> serversType2;
-	Map<int,Server> serversType3;
+	Map<int,Server> servers;
 	
-	clientHandler(Socket cs, Map<String,User> users, Map<int,Server> serversType1, Map<int,Server> ServersType2, Map<int,Server> ServersType3){
+	clientHandler(Socket cs, Map<String,User> users, Map<int,Server> servers){
 		this.cs = cs;
 		this.users = users;
-		this.serversType1 = serversType1;
-		this.serversType2 = serversType2;
-		this.serversType3 = serversType3;
+		this.servers = servers;
+
 	}
 	
 	private void registerUser(){
@@ -175,7 +173,33 @@ class clientHandler extends Thread {
 		return;		
 	}
 	
-	private showAccountInfo(){
+	private showServersRented(){
+		
+		int id;
+		String name;
+		String code;
+		char type;
+		float requestPrice;
+		float auctionPrice;
+		
+		//fazer lock do user
+		
+		List<int> userServers = currentUser.userServers;
+		
+		for(int i = 0; i < userServers.size(); i++){			
+			
+			id = userServers.get(i);		
+			name = servers.get(id).name;
+			code = servers.get(id).freeCode;
+			type = servers.get(id).type;
+			
+			out.print("Server id = "i"; Server name = "name"; Server type = "type"; Server freeing code = "freeCode"; /n");
+			out.flush();
+			
+		}
+		
+		out.print("List End./n");
+		out.flush;
 		
 	}
 	
@@ -200,9 +224,8 @@ class clientHandler extends Thread {
 class MasterServer {
 	
 	Map<String,User> users = new HashMap<String,User>();
-	Map<int,Server> serversType1 = new HashMap<int,Server>();
-	Map<int,Server> serversType2 = new HashMap<int,Server>();
-	Map<int,Server> serversType3 = new HashMap<int,Server>();
+	Map<int,Server> servers = new HashMap<int,Server>();
+
 	
 	private void init(){		
 		
