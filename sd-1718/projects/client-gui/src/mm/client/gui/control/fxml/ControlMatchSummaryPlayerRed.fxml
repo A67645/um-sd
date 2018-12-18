@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<fx:root alignment="CENTER_LEFT" spacing="15.0" type="HBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER" maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: white; -fx-border-color: rgb(127,0,0); -fx-border-radius: 4; -fx-border-width: 2;">
+         <children>
+            <Label fx:id="labelHero" text="α">
+               <font>
+                  <Font size="38.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <VBox alignment="CENTER_LEFT">
+         <children>
+            <Label fx:id="labelUsername" text="&lt;username&gt;">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelSummary" text="0 K | 0 A | 0 D" />
+         </children>
+      </VBox>
+   </children>
+</fx:root>

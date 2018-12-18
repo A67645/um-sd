@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="stackPane" alignment="BOTTOM_LEFT" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="CENTER_LEFT" prefHeight="500.0" prefWidth="700.0" spacing="20.0">
+         <children>
+            <HBox fx:id="hboxPlayers" alignment="BOTTOM_CENTER" fillHeight="false" spacing="30.0" VBox.vgrow="ALWAYS" />
+            <BorderPane VBox.vgrow="ALWAYS">
+               <center>
+                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" spacing="15.0">
+                     <children>
+                        <Label text="Select your hero:">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <GridPane fx:id="gridPaneHeroes" hgap="10.0" vgap="10.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="ALWAYS" />
+                              <ColumnConstraints hgrow="ALWAYS" />
+                              <ColumnConstraints hgrow="ALWAYS" />
+                              <ColumnConstraints hgrow="ALWAYS" />
+                              <ColumnConstraints hgrow="ALWAYS" />
+                              <ColumnConstraints hgrow="ALWAYS" />
+                              <ColumnConstraints hgrow="ALWAYS" />
+                            <ColumnConstraints hgrow="ALWAYS" />
+                              <ColumnConstraints hgrow="ALWAYS" />
+                              <ColumnConstraints hgrow="ALWAYS" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints vgrow="SOMETIMES" />
+                            <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                          </rowConstraints>
+                        </GridPane>
+                        <Button fx:id="buttonRandomHero" maxHeight="30.0" minHeight="30.0" mnemonicParsing="false" onAction="#buttonRandomHeroOnAction" prefHeight="30.0" text="(random)" />
+                        <Label fx:id="labelCountdown" text="&lt;time remaining&gt;" />
+                     </children>
+                  </VBox>
+               </center>
+            </BorderPane>
+            <HBox alignment="CENTER_RIGHT">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#buttonLeaveLobbyOnAction" text="Leave lobby" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
+   </children>
+</StackPane>

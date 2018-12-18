@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER_LEFT" prefHeight="500.0" prefWidth="700.0" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox>
+         <children>
+            <GridPane hgap="8.0" vgap="8.0" HBox.hgrow="ALWAYS">
+              <columnConstraints>
+                <ColumnConstraints halignment="LEFT" hgrow="NEVER" />
+                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints vgrow="NEVER" />
+                <RowConstraints vgrow="NEVER" />
+                <RowConstraints vgrow="NEVER" />
+                  <RowConstraints vgrow="NEVER" />
+              </rowConstraints>
+               <children>
+                  <Label text="Username:" />
+                  <Label text="Won matches:" GridPane.rowIndex="1" />
+                  <Label text="Lost matches:" GridPane.rowIndex="2" />
+                  <Label fx:id="labelUsername" text="Label" GridPane.columnIndex="1" />
+                  <Label fx:id="labelWonMatches" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="labelLostMatches" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="Rank:" GridPane.rowIndex="3" />
+                  <Label fx:id="labelRank" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+               </children>
+            </GridPane>
+            <GridPane hgap="8.0" vgap="8.0" HBox.hgrow="ALWAYS">
+               <columnConstraints>
+                  <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" />
+                  <ColumnConstraints halignment="LEFT" hgrow="NEVER" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints vgrow="NEVER" />
+                  <RowConstraints vgrow="NEVER" />
+                  <RowConstraints vgrow="NEVER" />
+                  <RowConstraints vgrow="NEVER" />
+               </rowConstraints>
+               <children>
+                  <Label text="Players logged in:" GridPane.rowIndex="1" />
+                  <Label text="Players in matchmaking:" GridPane.rowIndex="2" />
+                  <Label text="Lobbies:" GridPane.rowIndex="3" />
+                  <Label fx:id="labelPlayersLoggedIn" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="labelPlayersInMatchmaking" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="labelLobbies" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label text="Registered players:" />
+                  <Label fx:id="labelRegisteredPlayers" text="Label" GridPane.columnIndex="1" />
+               </children>
+            </GridPane>
+         </children>
+         <padding>
+            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+         </padding>
+      </HBox>
+      <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-border-color: gray;" VBox.vgrow="ALWAYS">
+         <children>
+            <VBox fx:id="vboxJoinMatchmaking" alignment="CENTER">
+               <children>
+                  <Button fx:id="buttonJoinMatchmaking" mnemonicParsing="false" onAction="#buttonJoinMatchmakingOnAction" text="Join matchmaking">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox fx:id="vboxInMatchmaking" alignment="CENTER" spacing="15.0" visible="false">
+               <children>
+                  <Label text="Searching for a match,&#10;please wait..." textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Button mnemonicParsing="false" onAction="#buttonLeaveMatchmakingOnAction" text="Leave matchmaking" />
+               </children>
+            </VBox>
+            <VBox fx:id="vboxMatchFound" alignment="CENTER" spacing="10.0" visible="false">
+               <children>
+                  <Label text="Match found!" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <HBox fx:id="hboxMatchFoundCheckBoxes" alignment="CENTER" disable="true" spacing="5.0">
+                     <padding>
+                        <Insets bottom="13.0" left="6.0" top="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER" spacing="10.0">
+                     <children>
+                        <Button fx:id="buttonAcceptMatch" mnemonicParsing="false" onAction="#buttonAcceptMatchOnAction" prefWidth="80.0" text="Accept">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#buttonDeclineMatchOnAction" prefWidth="80.0" text="Decline">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <Label fx:id="labelMatchFoundCountdown" text="20 seconds until auto-decline" textAlignment="CENTER" />
+               </children>
+            </VBox>
+         </children>
+      </StackPane>
+      <HBox alignment="CENTER_RIGHT">
+         <children>
+            <Button fx:id="buttonLogout" mnemonicParsing="false" onAction="#buttonLogoutOnAction" text="Logout" />
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</VBox>
