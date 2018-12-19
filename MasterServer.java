@@ -10,11 +10,13 @@ class User{
 	
 	String email;
 	String password;
+	float debt;
 	List<int> userServers = new ArrayList<int>();
 	
 	public User(String email, String password){
 		this.email = email;
 		this.password = password;
+		this.debt = 0;
 	}
 	
 }
@@ -193,9 +195,7 @@ class clientHandler extends Thread {
 			code = servers.get(id).freeCode;
 			type = servers.get(id).type;
 			
-			out.print("Server id = "i"; Server name = "name"; Server type = "type"; Server freeing code = "freeCode"; /n");
-			out.flush();
-			
+			out.print("Server id = "i"; Server name = "name"; Server type = "type"; Server freeing code = "freeCode"; /n");		
 		}
 		
 		out.print("List End./n");
@@ -205,6 +205,66 @@ class clientHandler extends Thread {
 	
 	private grantServerRequest(){
 		
+		String name;
+		char type;
+		float price;
+		String s;
+		Server requestedServer;
+		
+		//fazer lock dos servers
+		
+		out.print("Pick a server from the List: /n");
+		
+		for(int id: servers.keySet()){		
+			if(servers.get(id).inUse != 'Y'){			
+				name = servers.get(id).name;
+				type = servers.get(id).type;
+				price = servers.get(id).requestPrice;
+			
+				out.print("ID: "id"; Name: "name"; Type: "type"; Price: "price";\n");
+			}
+		}
+		
+		//fazer unlock
+		
+		out.print("Type Server ID to choose./n");
+		out.flush();
+		
+		s = in.readLine();
+		
+		//fazer lock dos servidores
+		
+		requestedServer = servers.get(Integer.parseInt(s));
+		
+		//fazer unlock
+		
+		if(requestedServer == null){
+			
+			out.print("A server with that ID does not exist!/n");
+			out.flush();
+			return;
+			
+		}
+		
+		//fazer lock do servidor requisitado
+		
+		if(requestedServer.inUse == 'Y' ){
+			
+			out.print("Server already in use!/n");
+			out.flush();
+			//fazer unlock
+			return;
+			
+		}
+		
+		currentUser.userServers.add(Integer.parseInt(s));
+		currentUser.debt += requestedServer.requestPrice;
+		requestedServer.inUse = 'Y';
+		
+		out.print("Server rental sucessful! Your freeing code is: "requestedServer.freeCode"/n");
+		out.flush();
+		//fazer unlock
+		return;
 	}
 	
 	private auctionServer(){		
@@ -212,6 +272,10 @@ class clientHandler extends Thread {
 	}
 	
 	private freeServer(){
+		
+	}
+	
+	private showUserDebt(){
 		
 	}
 	
