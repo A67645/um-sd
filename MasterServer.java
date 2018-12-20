@@ -32,12 +32,14 @@ class Server{
 	String freeCode;
 	
 	
-	public Server(int id, String name, float price, String code){
+	public Server(int id, String name, float price, String code, char type){
 		this.serverId = id
 		this.name = name;
 		this.requestPrice = price;
 		this.inUse = N;
 		this.freeCode = code;
+		this.type = type;
+		this.auctionPrice = 0;
 	}
 	
 }
@@ -45,7 +47,7 @@ class Server{
 class clientHandler extends Thread {
 	
 	Socket cs;
-	User currentUser;
+	User currentUser = null;
 	
 	PrintWriter out = new PrintWriter(cs.getOutputStream());
 	BufferedReader in = new BufferedReader(new InputStreamReader(cs.getInputStream()));	
@@ -97,7 +99,7 @@ class clientHandler extends Thread {
 			
 			aux = new user(m,p)
 			
-			//fazer lock
+			//fazer lock de users
 			
 			if(users.get(m) != null){
 				users.put(m,aux);
@@ -109,7 +111,7 @@ class clientHandler extends Thread {
 				out.flush();			
 			}		
 			
-		}catch(IOException e)			
+		}catch(IOException e)	
 		return;		
 	}
 	
@@ -134,7 +136,7 @@ class clientHandler extends Thread {
 				}			
 			}
 			
-			//fazer lock
+			//fazer lock dos users
 			
 			if(users.get(m) == null){				
 				out.print("No user exists with that e-mail./n");
@@ -156,9 +158,9 @@ class clientHandler extends Thread {
 				}			
 			}
 			
-			//fazer lock
-			
 			aux = users.get(m);
+			
+			//fazer lock do user
 			
 			if(aux.password != m){			
 				out.print("Wrong password!/n");
@@ -172,6 +174,7 @@ class clientHandler extends Thread {
 			out.flush();
 							
 		}catch(IOException e)
+		// nao fazer unlock do user, faz-se no log-out
 		return;		
 	}
 	
@@ -257,7 +260,7 @@ class clientHandler extends Thread {
 			
 		}
 		
-		currentUser.userServers.add(Integer.parseInt(s));
+		currentUser.userServers.add(requestedServer.id);
 		currentUser.debt += requestedServer.requestPrice;
 		requestedServer.inUse = 'Y';
 		
@@ -269,18 +272,179 @@ class clientHandler extends Thread {
 	
 	private auctionServer(){		
 		
+		String name;
+		char type;
+		float price;
+		String s;
+		Server requestedServer;
+		
+		//fazer lock dos servers
+		
+		out.print("Pick a server from the List: /n");
+		
+		for(int id: servers.keySet()){		
+			if(servers.get(id).inUse != 'Y'){			
+				name = servers.get(id).name;
+				type = servers.get(id).type;
+				price = servers.get(id).auctionPrice;
+			
+				out.print("ID: "id"; Name: "name"; Type: "type"; Current Offer: "price";\n");
+			}
+		}
+		
+		//fazer unlock
+		
+		out.print("Type Server ID to choose./n");
+		out.flush();
+		
+		s = in.readLine();
+		
+		//fazer lock dos servidores
+		
+		requestedServer = servers.get(Integer.parseInt(s));
+		
+		//fazer unlock
+		
+		if(requestedServer == null){
+			
+			out.print("A server with that ID does not exist!/n");
+			out.flush();
+			return;
+			
+		}
+		
+		//fazer lock do servidor requisitado
+		
+		if(requestedServer.inUse == 'Y' ){
+			
+			out.print("Server already in use!/n");
+			out.flush();
+			//fazer unlock
+			return;
+			
+		}
+		
+		out.print("What is your price offer?/n");
+		out.flush();
+		
+		s = in.readLine();
+		
+		if(Float.parseFloat(s) <= requestedServer.auctionPrice){
+			
+			out.print("Your offer does not beat the current offer!/n");
+			out.flush();
+			//fazer unlock
+			return;
+			
+		}
+		
+		if(Float.parseFloat(s) >= requestedServer.requestPrice){
+			
+			out.print("Your offer is equal or better to the server's request price! Use the request server option instead!/n");
+			out.flush();
+			//fazer unlock
+			return;
+			
+		}
+		
+		
+		currentUser.userServers.add(requestedServer.id);
+		requestedServer.auctionPrice = Float.parseFloat(s);
+		currentUser.debt += requestedServer.auctionPrice;
+		requestedServer.inUse = 'A';
+		
+		out.print("Server rental sucessful! Your freeing code is: "requestedServer.freeCode"/n");
+		out.flush();
+		//fazer unlock
+		return;
+		
+		
 	}
 	
 	private freeServer(){
 		
+		String s;
+		int id;
+		Server serv;
+		
+		out.print("Please input the freeing code of the server you want to free./n");
+		out.flush();
+		
+		s = in.readLine();
+		
+		List<int> userServers = currentUser.userServers;
+		
+		//fazer lock dos servers
+		
+		for(int i = 0; i < userServers.size(); i++){
+			
+			id = userServers.get(i);
+			serv = servers.get(id);
+			
+			if(s.equals(serv.freeCode)){
+				
+				serv.inUse = 'N';
+				userServers.remove(i);
+				
+				out.print("Server successfully freed./n");
+				out.flush();
+				//fazer unlock
+				return;
+			}
+			
+		}
+		
+		//fazer unlock
+		
+		out.print("You not currently renqting a server with the given freeing code./n");
+		out.flush();
+		
+		return;
 	}
 	
 	private showUserDebt(){
 		
+		out.print("Your current debt is: "currentUser.debt"./n");
+		out.flush();
+		
+		return;
+		
 	}
 	
 	public void run(){	
+	
+		String s;
 		
+		if(currentUser == null){
+			out.print("1-Log In./n");
+			out.print("2-Register as new User./n");
+			out.print("3-Exit./n");
+			out.print("Select Option/n");
+			out.flush();
+		
+			s = in.readLine();
+			
+			//case etc
+			//fazer lock do user depois do log in
+		
+		}
+		
+		else{
+			
+			out.print("1-Request Server./n");
+			out.print("2-Bid on Server./n");
+			out.print("3-Show rented Servers./n");
+			out.print("4-Free a rented Server./n");
+			out.print("5-Show current debt./n");
+			out.print("6-Log out./n");
+			out.print("Select Option/n");
+			
+			s = in.readLine();
+			
+			//case etc
+			//fazer unlock do user depois do log out
+			
+		}
 	}
 	
 }
