@@ -43,19 +43,19 @@ class Client {
 		
 		switch(sOut){
 			
-			case 1: sOut = "1";
+			case "1":
 				
 				logIn();
 				
 				break;
 					
-			case 2: sOut = "2";
+			case "2":
 			
 				registerAcc();
 			
 			break;
 					
-			case 3: sOut = "3";
+			case "3":
 			
 				quit = 1;
 				out.shutdownOutput();
@@ -85,37 +85,37 @@ class Client {
 		
 		switch(sOut){
 			
-			case 1: sOut = "1";
+			case "1":
 			
 				requestServer();
 			
 			break;
 					
-			case 2: sOut = "2";
+			case "2":
 			
 				bidOnServer();
 			
 			break;
 					
-			case 3: sOut = "3";
+			case "3":
 			
 				fetchRentedServers();
 			
 			break;
 					
-			case 4: sOut = "4";
+			case "4":
 			
 				freeServer();
 			
 			break;
 			
-			case 5: sOut = "5";
+			case "5":
 			
 				consultDebt();
 			
 			break;
 					
-			case 6: sOut = "6";
+			case "6": 
 			
 				loggedIn = 0;
 			

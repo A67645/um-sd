@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.concurrent.locks.*;
 
 class User{
 	
@@ -12,6 +13,7 @@ class User{
 	String password;
 	float debt;
 	List<int> userServers = new ArrayList<int>();
+	Lock l = new ReentrantLock();
 	
 	public User(String email, String password){
 		this.email = email;
@@ -30,6 +32,7 @@ class Server{
 	char inUse;
 	char type;
 	String freeCode;
+	Lock l = new ReentrantLock();
 	
 	
 	public Server(int id, String name, float price, String code, char type){
@@ -396,7 +399,7 @@ class clientHandler extends Thread {
 		
 		//fazer unlock
 		
-		out.print("You not currently renqting a server with the given freeing code./n");
+		out.print("You not currently renting a server with the given freeing code./n");
 		out.flush();
 		
 		return;
@@ -414,40 +417,99 @@ class clientHandler extends Thread {
 	public void run(){	
 	
 		String s;
+		int exit = 0;
 		
-		if(currentUser == null){
-			out.print("1-Log In./n");
-			out.print("2-Register as new User./n");
-			out.print("3-Exit./n");
-			out.print("Select Option/n");
-			out.flush();
+		while(exit == 0){
 		
-			s = in.readLine();
-			
-			//case etc
-			//fazer lock do user depois do log in
+			if(currentUser == null){
+				out.print("1-Log In./n");
+				out.print("2-Register as new User./n");
+				out.print("3-Exit./n");
+				out.print("Select Option/n");
+				out.flush();
 		
-		}
+				s = in.readLine();
+			
+				switch(s){
+				
+					case "1":
+				
+						userLogIn();
+				
+					break;
+				
+					case "2":
+				
+						registerUser();
+				
+					break;
+				
+					case "3":
+				
+						exit = 1;
+						out.close()
+						cs.close();
+				
+					break;
+				
+				}		
+			}	
 		
-		else{
+			else{
 			
-			out.print("1-Request Server./n");
-			out.print("2-Bid on Server./n");
-			out.print("3-Show rented Servers./n");
-			out.print("4-Free a rented Server./n");
-			out.print("5-Show current debt./n");
-			out.print("6-Log out./n");
-			out.print("Select Option/n");
+				out.print("1-Request Server./n");
+				out.print("2-Bid on Server./n");
+				out.print("3-Show rented Servers./n");
+				out.print("4-Free a rented Server./n");
+				out.print("5-Show current debt./n");
+				out.print("6-Log out./n");
+				out.print("Select Option/n");
 			
-			s = in.readLine();
+				s = in.readLine();
 			
-			//case etc
-			//fazer unlock do user depois do log out
-			
-		}
+				switch(s){
+				
+					case "1":
+					
+						grantServerRequest();
+				
+					break;
+				
+					case "2":
+					
+						auctionServer();
+					
+					break;
+				
+					case "3":
+				
+						showServersRented();
+				
+					break;
+					
+					case "4":
+				
+						freeServer();
+				
+					break;
+					
+					case "5":
+					
+						showUserDebt();
+				
+					break;
+				
+					case "6":
+										
+						currentUser.l.unlock();
+						currentUser = null;
+				
+					break;
+					
+				}
+			}
+		}	
 	}
-	
-}
 
 class MasterServer {
 	
@@ -456,6 +518,27 @@ class MasterServer {
 
 	
 	private void init(){		
+	
+		Server serv = new Server(1,"calc64",20.5,"HYTRD",'A'); 
+		servers.put(1,serv);
+		serv = new Server(2,"calc32",15.5,"MARYC",'A');
+		servers.put(2,serv);
+		serv = new Server(3,"calc126",25.5,"JDSVV",'A');
+		servers.put(3,serv);
+		serv = new Server(4,"game1",33.8,"HSNBM",'B');
+		servers.put(4,serv);
+		serv = new Server(5,"game2",33.8,"WQRXB",'B');
+		servers.put(5,serv);
+		serv = new Server(6,"game3",33.8,"WAPMM",'B');
+		servers.put(6,serv);
+		serv = new Server(7,"database200",20.0,"PBNDY",'C');
+		servers.put(7,serv);
+		serv = new Server(8,"database400",30.0,"FZUTD",'C');
+		servers.put(8,serv);
+		serv = new Server(9,"database600",40.0,"HVYWA",'C');
+		servers.put(8,serv);
+		
+		return;
 		
 	}
 	
