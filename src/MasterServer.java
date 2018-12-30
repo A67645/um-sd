@@ -1,16 +1,19 @@
 import java.net.Socket;
 import java.net.ServerSocket;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.BufferedReader;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.io.IOException;
+import java.lang.Object;
 
 class User{
 	
 	String email;
 	String password;
-	List<int> userServers = new ArrayList<int>();
+	List<Integer> userServers = new ArrayList<Integer>();
 	
 	public User(String email, String password){
 		this.email = email;
@@ -30,10 +33,10 @@ class Server{
 	
 	
 	public Server(int id, String name, float price, String code){
-		this.serverId = id
+		this.serverId = id;
 		this.name = name;
 		this.requestPrice = price;
-		this.inUse = N;
+		this.inUse = 'N';
 		this.freeCode = code;
 	}
 	
@@ -48,11 +51,11 @@ class clientHandler extends Thread {
 	BufferedReader in = new BufferedReader(new InputStreamReader(cs.getInputStream()));	
 	
 	Map<String,User> users;
-	Map<int,Server> serversType1;
-	Map<int,Server> serversType2;
-	Map<int,Server> serversType3;
+	Map<Integer,Server> serversType1;
+	Map<Integer,Server> serversType2;
+	Map<Integer,Server> serversType3;
 	
-	clientHandler(Socket cs, Map<String,User> users, Map<int,Server> serversType1, Map<int,Server> ServersType2, Map<int,Server> ServersType3){
+	clientHandler(Socket cs, Map<String,User> users, Map<Integer,Server> serversType1, Map<Integer,Server> ServersType2, Map<Integer,Server> ServersType3){
 		this.cs = cs;
 		this.users = users;
 		this.serversType1 = serversType1;
@@ -95,7 +98,7 @@ class clientHandler extends Thread {
 				}			
 			}
 			
-			aux = new user(m,p)
+			aux = new User(m,p);
 			
 			//fazer lock
 			
@@ -109,11 +112,11 @@ class clientHandler extends Thread {
 				out.flush();			
 			}		
 			
-		}catch(IOException e)			
+		}catch(IOException e){}		
 		return;		
 	}
 	
-	private void userLogIn(){
+	public void userLogIn(){
 		
 		try{
 						
@@ -171,23 +174,23 @@ class clientHandler extends Thread {
 			out.print("LogIn sucessful!/n");
 			out.flush();
 							
-		}catch(IOException e)
+		}catch(IOException e){}
 		return;		
 	}
 	
-	private showAccountInfo(){
+	private void showAccountInfo(){
 		
 	}
 	
-	private grantServerRequest(){
+	private void grantServerRequest(){
 		
 	}
 	
-	private auctionServer(){		
+	private void auctionServer(){		
 		
 	}
 	
-	private freeServer(){
+	private void freeServer(){
 		
 	}
 	
@@ -200,9 +203,9 @@ class clientHandler extends Thread {
 class MasterServer {
 	
 	Map<String,User> users = new HashMap<String,User>();
-	Map<int,Server> serversType1 = new HashMap<int,Server>();
-	Map<int,Server> serversType2 = new HashMap<int,Server>();
-	Map<int,Server> serversType3 = new HashMap<int,Server>();
+	Map<Integer,Server> serversType1 = new HashMap<Integer,Server>();
+	Map<Integer,Server> serversType2 = new HashMap<Integer,Server>();
+	Map<Integer,Server> serversType3 = new HashMap<Integer,Server>();
 	
 	private void init(){		
 		
