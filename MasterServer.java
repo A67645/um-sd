@@ -1,25 +1,29 @@
 import java.net.Socket;
 import java.net.ServerSocket;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.BufferedReader;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.io.IOException;
+import java.lang.Object;
 import java.util.concurrent.locks.*;
+import java.util.*;
 
 class User{
 	
 	String email;
 	String password;
 	float debt;
-	List<int> userServers;
+	List<Integer> userServers;
 	Lock l;
 	
 	public User(String email, String password){
 		this.email = email;
 		this.password = password;
 		this.debt = 0;
-		this.userServers = new ArrayList<int>();
+		this.userServers = new ArrayList<Integer>();
 		this.l = new ReentrantLock();
 	}
 	
@@ -38,10 +42,10 @@ class Server{
 	
 	
 	public Server(int id, String name, float price, String code, char type){
-		this.serverId = id
+		this.serverId = id;
 		this.name = name;
 		this.requestPrice = price;
-		this.inUse = N;
+		this.inUse = 'N';
 		this.freeCode = code;
 		this.type = type;
 		this.auctionPrice = 0;
@@ -53,28 +57,28 @@ class Server{
 class Database{
 	
 	Map<String,User> users;
-	Map<int,Server> servers;
+	Map<Integer,Server> servers;
 	Lock l;
 	
 	public Database(){	
 		this.users = new HashMap<String,User>();
-		this.servers = new HashMap<int,Server>();
+		this.servers = new HashMap<Integer,Server>();
 		this.l = new ReentrantLock();
 	}
 	
 }
 
-class clientHandler extends Thread {
+class ClientHandler extends Thread {
 	
 	Socket cs;
 	User currentUser = null;
 	
 	PrintWriter out = new PrintWriter(cs.getOutputStream());
-	BufferedReader in = new BufferedReader(new InputStreamReader(cs.getInputStream()));	
+	BufferedReader in = new BufferedReader(new InputStreamReader(cs.getInputStream()));	//Exception
 	
 	Database database;
 	
-	clientHandler(Socket cs, Database database){
+	ClientHandler(Socket cs, Database database){
 		this.cs = cs;
 		this.database = database;
 	}
@@ -84,13 +88,13 @@ class clientHandler extends Thread {
 		String m,p;
 		User aux;
 		
-		out.println("What is your e-mail?/n");
+		out.println("What is your e-mail?\n");
 		out.flush();
 		
 		while(true){				
-			m = in.readLine();
+			m = in.readLine(); 	//Exception
 			if(m == null){ 
-				out.print("Invalid e-mail!Try again!/n");
+				out.print("Invalid e-mail!Try again!\n");
 				out.flush();
 			}
 			else{
@@ -98,13 +102,13 @@ class clientHandler extends Thread {
 			}			
 		}
 			
-		out.println("What is your password?/n");
+		out.println("What is your password?\n");
 		out.flush();
 			
 		while(true){				
-			p = in.readLine();
+			p = in.readLine(); 	//Exception
 			if(p == null){ 
-				out.print("Invalid password!Try again!/n");
+				out.print("Invalid password!Try again!\n");
 				out.flush();
 			}
 			else{
@@ -112,17 +116,17 @@ class clientHandler extends Thread {
 			}			
 		}
 			
-		aux = new user(m,p)
+		aux = new User(m,p);
 			
 		database.l.lock();
 		try{
 			if(database.users.get(m) != null){
 				database.users.put(m,aux);
-				out.println("User registered successfully./n");
+				out.println("User registered successfully.\n");
 				out.flush();
 			}
 			else{
-				out.println("E-mail already exists. User not registered./n");
+				out.println("E-mail already exists. User not registered.\n");
 				out.flush();			
 			}
 		}
@@ -136,13 +140,13 @@ class clientHandler extends Thread {
 		String m,p;
 		User aux;
 		
-		out.println("What is your e-mail?/n");
+		out.println("What is your e-mail?\n");
 		out.flush();
 		
 		while(true){				
-			m = in.readLine();
+			m = in.readLine(); 	//Exception
 			if(m == null){ 
-				out.print("Invalid e-mail!Try again!/n");
+				out.print("Invalid e-mail!Try again!\n");
 				out.flush();
 			}
 			else{
@@ -153,20 +157,20 @@ class clientHandler extends Thread {
 		database.l.lock();
 		try{
 			if(database.users.get(m) == null){				
-				out.print("No user exists with that e-mail./n");
+				out.print("No user exists with that e-mail.\n");
 				out.flush();				
 				return;			
 			}
 		}
 		finally{ database.l.unlock(); }
 			
-		out.println("What is your password?/n");
+		out.println("What is your password?\n");
 		out.flush();
 			
 		while(true){				
-			p = in.readLine();
+			p = in.readLine();	//Exception
 			if(p == null){ 
-				out.print("Invalid password!Try again!/n");
+				out.print("Invalid password!Try again!\n");
 				out.flush();
 			}
 			else{
@@ -183,7 +187,7 @@ class clientHandler extends Thread {
 		aux.l.lock();
 			
 		if(aux.password != m){			
-			out.print("Wrong password!/n");
+			out.print("Wrong password!\n");
 			out.flush();
 			aux.l.unlock();
 			return;				
@@ -191,13 +195,13 @@ class clientHandler extends Thread {
 			
 		currentUser = aux;
 			
-		out.print("LogIn sucessful!/n");
+		out.print("LogIn sucessful!\n");
 		out.flush();
 		
 		return;		
 	}
 	
-	private showServersRented() throws InterruptedException{
+	private void showServersRented() throws InterruptedException{
 		
 		int id;
 		String name;
@@ -206,7 +210,7 @@ class clientHandler extends Thread {
 		float requestPrice;
 		float auctionPrice;
 		
-		List<int> userServers = currentUser.userServers;
+		List<Integer> userServers = currentUser.userServers;
 		
 		database.l.lock();
 		try{
@@ -214,20 +218,20 @@ class clientHandler extends Thread {
 				
 				id = userServers.get(i);		
 				name = database.servers.get(id).name;
-				code = database.servers.get(id).freeCode;
+				code = database.servers.get(id).freeCode; //Alterei de freeCode para code
 				type = database.servers.get(id).type;
 			
-				out.print("Server id = "i"; Server name = "name"; Server type = "type"; Server freeing code = "freeCode"; /n");		
+				out.print("Server id = " + i + "; Server name = " + name + "; Server type = " + type + "; Server freeing code = " + code + "; \n");		
 			}
 		}
 		finally{ database.l.unlock(); }
 		
 		out.print("List End./n");
-		out.flush;
+		out.flush();
 		
 	}
 	
-	private grantServerRequest() throws InterruptedException{
+	private void grantServerRequest() throws InterruptedException{
 		
 		String name;
 		char type;
@@ -235,7 +239,7 @@ class clientHandler extends Thread {
 		String s;
 		Server requestedServer;
 		
-		out.print("Pick a server from the List: /n");
+		out.print("Pick a server from the List: \n");
 		
 		database.l.lock();
 		try{
@@ -245,16 +249,16 @@ class clientHandler extends Thread {
 					type = database.servers.get(id).type;
 					price = database.servers.get(id).requestPrice;
 			
-					out.print("ID: "id"; Name: "name"; Type: "type"; Price: "price";\n");
+					out.print("ID: " + id + "; Name: " + name + "; Type: " + type + "; Price: " + price + ";\n");
 				}
 			}
 		}
 		finally{ database.l.lock(); }
 		
-		out.print("Type Server ID to choose./n");
+		out.print("Type Server ID to choose.\n");
 		out.flush();
 		
-		s = in.readLine();
+		s = in.readLine();	//Exception
 		
 		database.l.lock();
 		try{
@@ -264,7 +268,7 @@ class clientHandler extends Thread {
 			
 		if(requestedServer == null){
 				
-			out.print("A server with that ID does not exist!/n");
+			out.print("A server with that ID does not exist!\n");
 			out.flush();
 			return;		
 		}
@@ -272,23 +276,23 @@ class clientHandler extends Thread {
 		requestedServer.l.lock();
 		try{
 			if(requestedServer.inUse == 'Y' ){			
-				out.print("Server already in use!/n");
+				out.print("Server already in use!\n");
 				out.flush();
 				return;
 			}
 		
-			currentUser.userServers.add(requestedServer.id);
+			currentUser.userServers.add(requestedServer.serverId); //Alterei de id para serverId
 			currentUser.debt += requestedServer.requestPrice;
 			requestedServer.inUse = 'Y';
 		
-			out.print("Server rental sucessful! Your freeing code is: "requestedServer.freeCode"/n");
+			out.print("Server rental sucessful! Your freeing code is: " + requestedServer.freeCode + "\n");
 			out.flush();
 		}
 		finally{ requestedServer.l.unlock(); }
 		return;
 	}
 	
-	private auctionServer() throws InterruptedException{		
+	private void auctionServer() throws InterruptedException{		
 		
 		String name;
 		char type;
@@ -296,7 +300,7 @@ class clientHandler extends Thread {
 		String s;
 		Server requestedServer;
 
-		out.print("Pick a server from the List: /n");
+		out.print("Pick a server from the List: \n");
 		
 		database.l.lock();
 		try{
@@ -306,16 +310,16 @@ class clientHandler extends Thread {
 					type = database.servers.get(id).type;
 					price = database.servers.get(id).auctionPrice;
 				
-					out.print("ID: "id"; Name: "name"; Type: "type"; Current Offer: "price";\n");
+					out.print("ID: " + id + "; Name: " + name + "; Type: " + type + "; Current Offer: " + price + ";\n");
 				}
 			}
 		}
 		finally{ database.l.unlock(); }
 		
-		out.print("Type Server ID to choose./n");
+		out.print("Type Server ID to choose.\n");
 		out.flush();
 		
-		s = in.readLine();
+		s = in.readLine();	//Exception
 		
 		database.l.lock();
 		try{
@@ -325,7 +329,7 @@ class clientHandler extends Thread {
 		
 		if(requestedServer == null){
 			
-			out.print("A server with that ID does not exist!/n");
+			out.print("A server with that ID does not exist!\n");
 			out.flush();
 			return;		
 		}
@@ -333,7 +337,7 @@ class clientHandler extends Thread {
 		requestedServer.l.lock();
 		try{
 			if(requestedServer.inUse == 'Y' ){				
-				out.print("Server already in use!/n");
+				out.print("Server already in use!\n");
 				out.flush();
 				return;	
 			}
@@ -341,10 +345,10 @@ class clientHandler extends Thread {
 			out.print("What is your price offer?/n");
 			out.flush();
 		
-			s = in.readLine();
+			s = in.readLine();	//Exception
 		
 			if(Float.parseFloat(s) <= requestedServer.auctionPrice){				
-				out.print("Your offer does not beat the current offer!/n");
+				out.print("Your offer does not beat the current offer!\n");
 				out.flush();				
 				return;			
 			}
@@ -356,12 +360,12 @@ class clientHandler extends Thread {
 			}
 		
 		
-			currentUser.userServers.add(requestedServer.id);
+			currentUser.userServers.add(requestedServer.serverId);  //Alterei de id para serverId
 			requestedServer.auctionPrice = Float.parseFloat(s);
 			currentUser.debt += requestedServer.auctionPrice;
 			requestedServer.inUse = 'A';
 		
-			out.print("Server rental sucessful! Your freeing code is: "requestedServer.freeCode"/n");
+			out.print("Server rental sucessful! Your freeing code is: " + requestedServer.freeCode + "\n");
 			out.flush();
 		}
 		finally{ requestedServer.l.unlock(); }
@@ -369,18 +373,18 @@ class clientHandler extends Thread {
 		return;		
 	}
 	
-	private freeServer() throws InterruptedException{
+	private void freeServer() throws InterruptedException{
 		
 		String s;
 		int id;
 		Server serv;
 		
-		out.print("Please input the freeing code of the server you want to free./n");
+		out.print("Please input the freeing code of the server you want to free.\n");
 		out.flush();
 		
-		s = in.readLine();
+		s = in.readLine();	//Exception
 		
-		List<int> userServers = currentUser.userServers;
+		List<Integer> userServers = currentUser.userServers;
 		
 		//fazer lock dos servers
 		
@@ -400,7 +404,7 @@ class clientHandler extends Thread {
 					serv.inUse = 'N';
 					userServers.remove(i);
 					
-					out.print("Server successfully freed./n");
+					out.print("Server successfully freed.\n");
 					out.flush();
 					return;
 				}
@@ -408,15 +412,15 @@ class clientHandler extends Thread {
 			finally{ serv.l.unlock(); }			
 		}
 		
-		out.print("You not currently renting a server with the given freeing code./n");
+		out.print("You not currently renting a server with the given freeing code.\n");
 		out.flush();
 		
 		return;
 	}
 	
-	private showUserDebt(){
+	private void showUserDebt(){
 		
-		out.print("Your current debt is: "currentUser.debt"./n");
+		out.print("Your current debt is: " + currentUser.debt + ".\n");
 		out.flush();
 		
 		return;
@@ -437,27 +441,27 @@ class clientHandler extends Thread {
 				out.print("Select Option/n");
 				out.flush();
 		
-				s = in.readLine();
+				s = in.readLine();	//Exception
 			
 				switch(s){
 				
 					case "1":
 				
-						userLogIn();
+						userLogIn();	//Exception
 				
 					break;
 				
 					case "2":
 				
-						registerUser();
+						registerUser();	//Exception
 				
 					break;
 				
 					case "3":
 				
 						exit = 1;
-						out.close()
-						cs.close();
+						out.close();
+						cs.close();	//Exception
 				
 					break;
 				
@@ -474,31 +478,31 @@ class clientHandler extends Thread {
 				out.print("6-Log out./n");
 				out.print("Select Option/n");
 			
-				s = in.readLine();
+				s = in.readLine();	//Exception
 			
 				switch(s){
 				
 					case "1":
 					
-						grantServerRequest();
+						grantServerRequest();	//Exception
 				
 					break;
 				
 					case "2":
 					
-						auctionServer();
+						auctionServer();	//Exception
 					
 					break;
 				
 					case "3":
 				
-						showServersRented();
+						showServersRented();	//Exception
 				
 					break;
 					
 					case "4":
 				
-						freeServer();
+						freeServer();	//Exception
 				
 					break;
 					
@@ -519,6 +523,7 @@ class clientHandler extends Thread {
 			}
 		}	
 	}
+}
 
 class MasterServer {
 	
@@ -527,23 +532,23 @@ class MasterServer {
 	private void init(){		
 	
 		database = new Database();
-		Server serv = new Server(1,"calc64",20.5,"HYTRD",'A'); 
+		Server serv = new Server(1,"calc64",20.5f,"HYTRD",'A'); 
 		database.servers.put(1,serv);
-		serv = new Server(2,"calc32",15.5,"MARYC",'A');
+		serv = new Server(2,"calc32",15.5f,"MARYC",'A');
 		database.servers.put(2,serv);
-		serv = new Server(3,"calc126",25.5,"JDSVV",'A');
+		serv = new Server(3,"calc126",25.5f,"JDSVV",'A');
 		database.servers.put(3,serv);
-		serv = new Server(4,"game1",33.8,"HSNBM",'B');
+		serv = new Server(4,"game1",33.8f,"HSNBM",'B');
 		database.servers.put(4,serv);
-		serv = new Server(5,"game2",33.8,"WQRXB",'B');
+		serv = new Server(5,"game2",33.8f,"WQRXB",'B');
 		database.servers.put(5,serv);
-		serv = new Server(6,"game3",33.8,"WAPMM",'B');
+		serv = new Server(6,"game3",33.8f,"WAPMM",'B');
 		database.servers.put(6,serv);
-		serv = new Server(7,"database200",20.0,"PBNDY",'C');
+		serv = new Server(7,"database200",20.0f,"PBNDY",'C');
 		database.servers.put(7,serv);
-		serv = new Server(8,"database400",30.0,"FZUTD",'C');
+		serv = new Server(8,"database400",30.0f,"FZUTD",'C');
 		database.servers.put(8,serv);
-		serv = new Server(9,"database600",40.0,"HVYWA",'C');
+		serv = new Server(9,"database600",40.0f,"HVYWA",'C');
 		database.servers.put(8,serv);
 		
 		return;
