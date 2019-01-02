@@ -1,68 +1,8 @@
-Erros
-
-MasterServer.java:328: error: variable requestedServer might not have been initialized
-		finally{ requestedServer.l.lock(); }
-		         ^
-MasterServer.java:76: error: unreported exception IOException; must be caught or declared to be thrown
-	PrintWriter out = new PrintWriter(cs.getOutputStream());
-	                                                    ^
-MasterServer.java:77: error: unreported exception IOException; must be caught or declared to be thrown
-	BufferedReader in = new BufferedReader(new InputStreamReader(cs.getInputStream()));	//Exception
-	                                                                              ^
-MasterServer.java:95: error: unreported exception IOException; must be caught or declared to be thrown
-			m = in.readLine(); 	//Exception
-			               ^
-MasterServer.java:109: error: unreported exception IOException; must be caught or declared to be thrown
-			p = in.readLine(); 	//Exception
-			               ^
-MasterServer.java:147: error: unreported exception IOException; must be caught or declared to be thrown
-			m = in.readLine(); 	//Exception
-			               ^
-MasterServer.java:171: error: unreported exception IOException; must be caught or declared to be thrown
-			p = in.readLine();	//Exception
-			               ^
-MasterServer.java:261: error: unreported exception IOException; must be caught or declared to be thrown
-		s = in.readLine();	//Exception
-		               ^
-MasterServer.java:322: error: unreported exception IOException; must be caught or declared to be thrown
-		s = in.readLine();	//Exception
-		               ^
-MasterServer.java:348: error: unreported exception IOException; must be caught or declared to be thrown
-			s = in.readLine();	//Exception
-			               ^
-MasterServer.java:385: error: unreported exception IOException; must be caught or declared to be thrown
-		s = in.readLine();	//Exception
-		               ^
-MasterServer.java:444: error: unreported exception IOException; must be caught or declared to be thrown
-				s = in.readLine();	//Exception
-				               ^
-MasterServer.java:450: error: unreported exception InterruptedException; must be caught or declared to be thrown
-						userLogIn();	//Exception
-						         ^
-MasterServer.java:456: error: unreported exception InterruptedException; must be caught or declared to be thrown
-						registerUser();	//Exception
-						            ^
-MasterServer.java:464: error: unreported exception IOException; must be caught or declared to be thrown
-						cs.close();	//Exception
-						        ^
-MasterServer.java:481: error: unreported exception IOException; must be caught or declared to be thrown
-				s = in.readLine();	//Exception
-				               ^
-MasterServer.java:487: error: unreported exception InterruptedException; must be caught or declared to be thrown
-						grantServerRequest();	//Exception
-						                  ^
-MasterServer.java:493: error: unreported exception InterruptedException; must be caught or declared to be thrown
-						auctionServer();	//Exception
-						             ^
-MasterServer.java:499: error: unreported exception InterruptedException; must be caught or declared to be thrown
-						showServersRented();	//Exception
-						                 ^
-MasterServer.java:505: error: unreported exception InterruptedException; must be caught or declared to be thrown
-						freeServer();	//Exception
-						          ^
-MasterServer.java:563: error: non-static method init() cannot be referenced from a static context
-		init();
-		^
-MasterServer.java:567: error: non-static variable database cannot be referenced from a static context
-			new ClientHandler(cs,database).start();		
-			                     ^
+MasterServer.java:436: error: run() in ClientHandler cannot implement run() in Runnable
+	public void run() throws InterruptedException{	
+	            ^
+  overridden method does not throw InterruptedException
+MasterServer.java:573: error: incompatible types: void cannot be converted to ClientHandler
+			ch = new ClientHandler(cs,database).start();		
+			                                         ^
+2 errors

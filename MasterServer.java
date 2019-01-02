@@ -73,17 +73,19 @@ class ClientHandler extends Thread {
 	Socket cs;
 	User currentUser = null;
 	
-	PrintWriter out = new PrintWriter(cs.getOutputStream());
-	BufferedReader in = new BufferedReader(new InputStreamReader(cs.getInputStream()));	//Exception
+	PrintWriter out;    // mudei a atribuição para o ClientHandler
+	BufferedReader in;	// mudei a atribuição para o ClientHandler
 	
 	Database database;
 	
-	ClientHandler(Socket cs, Database database){
+	ClientHandler(Socket cs, Database database) throws IOException { // Exception
 		this.cs = cs;
 		this.database = database;
+		this.out = new PrintWriter(cs.getOutputStream()); // mudei a atribuição para o ClientHandler
+		this.in = new BufferedReader(new InputStreamReader(cs.getInputStream())); // mudei a atribuição para o ClientHandler
 	}
 	
-	private void registerUser() throws InterruptedException{
+	private void registerUser() throws InterruptedException, IOException{
 							
 		String m,p;
 		User aux;
@@ -135,7 +137,7 @@ class ClientHandler extends Thread {
 		return;		
 	}
 	
-	private void userLogIn() throws InterruptedException{
+	private void userLogIn() throws InterruptedException, IOException{
 								
 		String m,p;
 		User aux;
@@ -231,7 +233,7 @@ class ClientHandler extends Thread {
 		
 	}
 	
-	private void grantServerRequest() throws InterruptedException{
+	private void grantServerRequest() throws InterruptedException, IOException{
 		
 		String name;
 		char type;
@@ -292,13 +294,13 @@ class ClientHandler extends Thread {
 		return;
 	}
 	
-	private void auctionServer() throws InterruptedException{		
+	private void auctionServer() throws InterruptedException, IOException{		
 		
 		String name;
 		char type;
 		float price;
 		String s;
-		Server requestedServer;
+		Server requestedServer = null;
 
 		out.print("Pick a server from the List: \n");
 		
@@ -325,13 +327,15 @@ class ClientHandler extends Thread {
 		try{
 			requestedServer = database.servers.get(Integer.parseInt(s));
 		}
-		finally{ requestedServer.l.lock(); }
+		finally{ 
+			//requestedServer.l.lock();
 		
-		if(requestedServer == null){
+			if(requestedServer == null){
 			
-			out.print("A server with that ID does not exist!\n");
-			out.flush();
-			return;		
+				out.print("A server with that ID does not exist!\n");
+				out.flush();
+				return;		
+			}
 		}
 		
 		requestedServer.l.lock();
@@ -368,12 +372,14 @@ class ClientHandler extends Thread {
 			out.print("Server rental sucessful! Your freeing code is: " + requestedServer.freeCode + "\n");
 			out.flush();
 		}
-		finally{ requestedServer.l.unlock(); }
+		finally{ 
+			requestedServer.l.unlock(); 
+		}
 		
 		return;		
 	}
 	
-	private void freeServer() throws InterruptedException{
+	private void freeServer() throws InterruptedException, IOException{
 		
 		String s;
 		int id;
@@ -418,7 +424,7 @@ class ClientHandler extends Thread {
 		return;
 	}
 	
-	private void showUserDebt(){
+	private void showUserDebt() throws IOException, InterruptedException{
 		
 		out.print("Your current debt is: " + currentUser.debt + ".\n");
 		out.flush();
@@ -427,7 +433,7 @@ class ClientHandler extends Thread {
 		
 	}
 	
-	public void run(){	
+	public void run() throws InterruptedException{	
 	
 		String s;
 		int exit = 0;
@@ -527,9 +533,9 @@ class ClientHandler extends Thread {
 
 class MasterServer {
 	
-	Database database;
+	static Database database;
 
-	private void init(){		
+	private static void init(){		
 	
 		database = new Database();
 		Server serv = new Server(1,"calc64",20.5f,"HYTRD",'A'); 
@@ -559,12 +565,12 @@ class MasterServer {
 		
 		int port = 1111;
 		ServerSocket ss = new ServerSocket(port);
-		
+		ClientHandler ch; // Acrescentei para não dar erro de non-static variable 
 		init();
 			
 		while(true){			
 			Socket cs = ss.accept();
-			new ClientHandler(cs,database).start();		
+			ch = new ClientHandler(cs,database).start();		
 		}		
 	}
 	

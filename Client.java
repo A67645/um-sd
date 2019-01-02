@@ -1,7 +1,16 @@
 import java.net.Socket;
 import java.net.ServerSocket;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.BufferedReader;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.ArrayList;
+import java.io.IOException;
+import java.lang.Object;
+import java.util.concurrent.locks.*;
+import java.util.*;
+
 
 class Client {
 		
@@ -30,7 +39,7 @@ class Client {
 	
 	}
 	
-	private void mainMenu(){
+	private static void mainMenu(){
 		
 		while(sIn.equals("Select Option/n") != true){	
 			sIn = in.readLine();
@@ -72,7 +81,7 @@ class Client {
 		
 	}
 	
-	private void loggedInMenu(){
+	private static void loggedInMenu(){
 		
 		while(sIn.equals("Select Option/n") != true){	
 			sIn = in.readLine();
@@ -129,7 +138,7 @@ class Client {
 		
 	}
 	
-	private void logIn(){
+	private static void logIn(){
 		
 		sIn = in.readLine();
 		System.out.println(sIn);
@@ -185,7 +194,7 @@ class Client {
 		
 	}
 	
-	private void registerAcc(){
+	private static void registerAcc(){
 		
 		sIn = in.readLine();
 		System.out.println(sIn);
@@ -232,7 +241,7 @@ class Client {
 
 	}
 	
-	private void requestServer(){
+	private static void requestServer(){
 		
 		while(sIn.equals("Type Server ID to choose./n") != true){	
 			sIn = in.readLine();
@@ -248,7 +257,7 @@ class Client {
 		
 	}
 	
-	private void bidOnServer(){
+	private static void bidOnServer(){
 		
 		while(sIn.equals("Type Server ID to choose./n") != true){	
 			sIn = in.readLine();
@@ -283,7 +292,7 @@ class Client {
 		
 	}
 	
-	private void freeServer(){
+	private static void freeServer(){
 		
 		sIn = in.readLine();
 		System.out.println(sIn);
@@ -297,7 +306,7 @@ class Client {
 		
 	}
 	
-	private void fetchRentedServers(){
+	private static void fetchRentedServers(){
 		
 		while(sIn.equals("List End./n") != true){	
 			sIn = in.readLine();
@@ -306,7 +315,7 @@ class Client {
 		
 	}
 	
-	private void consultDebt(){
+	private static void consultDebt(){
 		
 		sIn = in.readLine();
 		System.out.println(sIn);
