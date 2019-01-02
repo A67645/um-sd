@@ -38,26 +38,21 @@ class Client {
 		
 		while(quit == 0){
 			if(loggedIn == 0){
-				try{
-					mainMenu();
-				}
-				catch(IOException e){}
+				mainMenu();
 			}
 			else{
-				try{
-					loggedInMenu();
-				}
-				catch(IOException e){}
+				loggedInMenu();
 			}
 		}
-		
-	
 	}
 	
 	private static void mainMenu(){
 		
 		while(sIn.equals("Select Option/n") != true){	
-			sIn = in.readLine();
+			try{
+				sIn = in.readLine();
+			}
+			catch(IOException e){}
 			System.out.println(sIn);		
 		}
 		
@@ -83,7 +78,10 @@ class Client {
 			
 				quit = 1;
 				out.close();
-				cs.close();
+				try{
+					cs.close();
+				}
+				catch(IOException e){}
 			
 			break;
 			
@@ -98,7 +96,10 @@ class Client {
 	private static void loggedInMenu(){
 		
 		while(sIn.equals("Select Option/n") != true){	
-			sIn = in.readLine();
+			try{
+				sIn = in.readLine();
+			}
+			catch(IOException e){}
 			System.out.println(sIn);		
 		}
 		
@@ -154,14 +155,20 @@ class Client {
 	
 	private static void logIn(){
 		
-		sIn = in.readLine();
+		try{
+			sIn = in.readLine();
+		}
+		catch(IOException e){}
 		System.out.println(sIn);
 				
 		sOut = System.console().readLine();
 		out.println(sOut);
 		out.flush();
 				
-		sIn = in.readLine();
+		try{
+			sIn = in.readLine();
+		}
+		catch(IOException e){}
 		System.out.println(sIn);
 				
 		while(sIn.equals("Invalid e-mail!Try again!/n")){
@@ -170,7 +177,10 @@ class Client {
 			out.println(sOut);
 			out.flush();
 					
-			sIn = in.readLine();
+			try{
+				sIn = in.readLine();
+			}
+			catch(IOException e){}
 			System.out.println(sIn);
 					
 		}
@@ -183,7 +193,10 @@ class Client {
 		out.println(sOut);
 		out.flush();
 		
-		sIn = in.readLine();
+		try{
+			sIn = in.readLine();
+		}
+		catch(IOException e){}
 		System.out.println(sIn);
 				
 		while(sIn.equals("Invalid password!Try again!/n")){
@@ -192,7 +205,10 @@ class Client {
 			out.println(sOut);
 			out.flush();
 					
-			sIn = in.readLine();
+			try{
+				sIn = in.readLine();
+			}
+			catch(IOException e){}
 			System.out.println(sIn);
 					
 		}
@@ -201,7 +217,10 @@ class Client {
 			return;				
 		}				
 				
-		sIn = in.readLine();
+		try{
+			sIn = in.readLine();
+		}
+		catch(IOException e){}
 		System.out.println(sIn);
 		loggedIn = 1;	
 		return;		
@@ -210,14 +229,20 @@ class Client {
 	
 	private static void registerAcc(){
 		
-		sIn = in.readLine();
+		try{
+			sIn = in.readLine();
+		}
+		catch(IOException e){}
 		System.out.println(sIn);
 				
 		sOut = System.console().readLine();
 		out.println(sOut);
 		out.flush();
 				
-		sIn = in.readLine();
+		try{
+			sIn = in.readLine();
+		}
+		catch(IOException e){}
 		System.out.println(sIn);
 				
 		while(sIn.equals("Invalid e-mail!Try again!/n")){
@@ -226,7 +251,10 @@ class Client {
 			out.println(sOut);
 			out.flush();
 					
-			sIn = in.readLine();
+			try{
+				sIn = in.readLine();
+			}
+			catch(IOException e){}
 			System.out.println(sIn);
 					
 		}
@@ -235,7 +263,10 @@ class Client {
 		out.println(sOut);
 		out.flush();
 		
-		sIn = in.readLine();
+		try{
+			sIn = in.readLine();
+		}
+		catch(IOException e){}
 		System.out.println(sIn);
 				
 		while(sIn.equals("Invalid password!Try again!/n")){
@@ -244,12 +275,18 @@ class Client {
 			out.println(sOut);
 			out.flush();
 					
-			sIn = in.readLine();
+			try{
+				sIn = in.readLine();
+			}
+			catch(IOException e){}
 			System.out.println(sIn);
 					
 		}			
 				
-		sIn = in.readLine();
+		try{
+			sIn = in.readLine();
+		}
+		catch(IOException e){}
 		System.out.println(sIn);
 		return;
 
@@ -258,7 +295,10 @@ class Client {
 	private static void requestServer(){
 		
 		while(sIn.equals("Type Server ID to choose./n") != true){	
-			sIn = in.readLine();
+			try{
+				sIn = in.readLine();
+			}
+			catch(IOException e){}
 			System.out.println(sIn);		
 		}
 		
@@ -266,7 +306,10 @@ class Client {
 		out.println(sOut);
 		out.flush();
 		
-		sIn = in.readLine();
+		try{
+			sIn = in.readLine();
+		}
+		catch(IOException e){}
 		System.out.println(sIn);
 		
 	}
@@ -274,7 +317,10 @@ class Client {
 	private static void bidOnServer(){
 		
 		while(sIn.equals("Type Server ID to choose./n") != true){	
-			sIn = in.readLine();
+			try{
+				sIn = in.readLine();
+			}
+			catch(IOException e){}
 			System.out.println(sIn);		
 		}
 		
@@ -282,7 +328,10 @@ class Client {
 		out.println(sOut);
 		out.flush();
 		
-		sIn = in.readLine();
+		try{
+			sIn = in.readLine();
+		}
+		catch(IOException e){}
 		System.out.println(sIn);
 		
 		if(sIn.equals("A server with that ID does not exist!/n") || sIn.equals("Server already in use!/n")){			
@@ -293,14 +342,20 @@ class Client {
 		out.println(sOut);
 		out.flush();
 		
-		sIn = in.readLine();
+		try{
+			sIn = in.readLine();
+		}
+		catch(IOException e){}
 		System.out.println(sIn);
 		
 		if(sIn.equals("Your offer does not beat the current offer!/n") || sIn.equals("Your offer is equal or better to the server's request price! Use the request server option instead!/n")){			
 			return;			
 		}
 		
-		sIn = in.readLine();
+		try{
+			sIn = in.readLine();
+		}
+		catch(IOException e){}
 		System.out.println(sIn);
 		return;
 		
@@ -308,14 +363,20 @@ class Client {
 	
 	private static void freeServer(){
 		
-		sIn = in.readLine();
+		try{
+			sIn = in.readLine();
+		}
+		catch(IOException e){}
 		System.out.println(sIn);
 		
 		sOut = System.console().readLine();
 		out.println(sOut);
 		out.flush();
 		
-		sIn = in.readLine();
+		try{
+			sIn = in.readLine();
+		}
+		catch(IOException e){}
 		System.out.println(sIn);
 		
 	}
@@ -323,7 +384,10 @@ class Client {
 	private static void fetchRentedServers(){
 		
 		while(sIn.equals("List End./n") != true){	
-			sIn = in.readLine();
+			try{
+				sIn = in.readLine();
+			}
+			catch(IOException e){}
 			System.out.println(sIn);		
 		}
 		
@@ -331,7 +395,10 @@ class Client {
 	
 	private static void consultDebt(){
 		
-		sIn = in.readLine();
+		try{
+			sIn = in.readLine();
+		}
+		catch(IOException e){}
 		System.out.println(sIn);
 		
 	}
