@@ -1,18 +1,10 @@
 import java.net.Socket;
-import java.net.ServerSocket;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.BufferedReader;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.ArrayList;
 import java.io.IOException;
-import java.lang.Object;
-import java.util.concurrent.locks.*;
-import java.util.*;
 
-
-class Client {
+public class Client {
 		
 	public static String sIn;
 	public static String sOut;
@@ -50,7 +42,7 @@ class Client {
 		
 		while(sIn.equals("Select Option/n") != true){	
 			try{
-				sIn = in.readLine();
+                            sIn = in.readLine();
 			}
 			catch(IOException e){}
 			System.out.println(sIn);		
@@ -223,7 +215,6 @@ class Client {
 		catch(IOException e){}
 		System.out.println(sIn);
 		loggedIn = 1;	
-		return;		
 		
 	}
 	
@@ -288,7 +279,6 @@ class Client {
 		}
 		catch(IOException e){}
 		System.out.println(sIn);
-		return;
 
 	}
 	
@@ -357,7 +347,6 @@ class Client {
 		}
 		catch(IOException e){}
 		System.out.println(sIn);
-		return;
 		
 	}
 	

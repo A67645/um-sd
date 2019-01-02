@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.io.IOException;
-import java.lang.Object;
+
 import java.util.concurrent.locks.*;
 import java.util.*;
 
@@ -23,7 +23,7 @@ class User{
 		this.email = email;
 		this.password = password;
 		this.debt = 0;
-		this.userServers = new ArrayList<Integer>();
+		this.userServers = new ArrayList<>();
 		this.l = new ReentrantLock();
 	}
 	
@@ -61,8 +61,8 @@ class Database{
 	Lock l;
 	
 	public Database(){	
-		this.users = new HashMap<String,User>();
-		this.servers = new HashMap<Integer,Server>();
+		this.users = new HashMap<>();
+		this.servers = new HashMap<>();
 		this.l = new ReentrantLock();
 	}
 	
@@ -71,19 +71,18 @@ class Database{
 class ClientHandler extends Thread {
 	
 	Socket cs;
-	User currentUser;
+	User currentUser = null;
 	
 	PrintWriter out;    // mudei a atribuição para o ClientHandler
 	BufferedReader in;	// mudei a atribuição para o ClientHandler
 	
 	Database database;
 	
-	ClientHandler(Socket cs, Database database) throws IOException { 
+	ClientHandler(Socket cs, Database database) throws IOException { // Exception
 		this.cs = cs;
 		this.database = database;
 		this.out = new PrintWriter(cs.getOutputStream()); // mudei a atribuição para o ClientHandler
 		this.in = new BufferedReader(new InputStreamReader(cs.getInputStream())); // mudei a atribuição para o ClientHandler
-		this.currentUser = null;
 	}
 	
 	private void registerUser() throws InterruptedException, IOException{
@@ -142,7 +141,6 @@ class ClientHandler extends Thread {
 		}
 		finally{ database.l.unlock(); }
 
-		return;		
 	}
 	
 	private void userLogIn() throws InterruptedException, IOException{
@@ -203,7 +201,7 @@ class ClientHandler extends Thread {
 			
 		aux.l.lock();
 			
-		if(aux.password != m){			
+		if(!aux.password.equals(m)){			
 			out.print("Wrong password!\n");
 			out.flush();
 			aux.l.unlock();
@@ -215,7 +213,6 @@ class ClientHandler extends Thread {
 		out.print("LogIn sucessful!\n");
 		out.flush();
 		
-		return;		
 	}
 	
 	private void showServersRented() throws InterruptedException{
@@ -309,7 +306,6 @@ class ClientHandler extends Thread {
 			out.flush();
 		}
 		finally{ requestedServer.l.unlock(); }
-		return;
 	}
 	
 	private void auctionServer() throws InterruptedException, IOException{		
@@ -400,12 +396,11 @@ class ClientHandler extends Thread {
 			requestedServer.l.unlock(); 
 		}
 		
-		return;		
 	}
 	
 	private void freeServer() throws InterruptedException, IOException{
 		
-		String s = null;
+		String s = "0";
 		int id;
 		Server serv;
 		
@@ -446,7 +441,6 @@ class ClientHandler extends Thread {
 		out.print("You not currently renting a server with the given freeing code.\n");
 		out.flush();
 		
-		return;
 	}
 	
 	private void showUserDebt() throws IOException, InterruptedException{
@@ -454,13 +448,13 @@ class ClientHandler extends Thread {
 		out.print("Your current debt is: " + currentUser.debt + ".\n");
 		out.flush();
 		
-		return;
 		
 	}
 	
+        @Override
 	public void run(){	
 	
-		String s = null;
+		String s = "0";
 		int exit = 0;
 		
 		while(exit == 0){
@@ -611,9 +605,7 @@ class MasterServer {
 		database.servers.put(8,serv);
 		serv = new Server(9,"database600",40.0f,"HVYWA",'C');
 		database.servers.put(8,serv);
-		
-		return;
-		
+				
 	}
 	
 	public static void main(String[] args){
