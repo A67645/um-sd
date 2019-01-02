@@ -1,5 +1,51 @@
-MasterServer.java:458: error: run() in ClientHandler cannot implement run() in Runnable
-	public void run() throws InterruptedException{	
-	            ^
-  overridden method does not throw InterruptedException
-1 error
+MasterServer.java:101: error: variable m might not have been initialized
+			if(m == null){ 
+			   ^
+MasterServer.java:118: error: variable p might not have been initialized
+			if(p == null){ 
+			   ^
+MasterServer.java:159: error: variable m might not have been initialized
+			if(m == null){ 
+			   ^
+MasterServer.java:186: error: variable p might not have been initialized
+			if(p == null){ 
+			   ^
+MasterServer.java:282: error: variable s might not have been initialized
+			requestedServer = database.servers.get(Integer.parseInt(s));
+			                                                        ^
+MasterServer.java:346: error: variable s might not have been initialized
+			requestedServer = database.servers.get(Integer.parseInt(s));
+			                                                        ^
+MasterServer.java:430: error: variable s might not have been initialized
+				if(s.equals(serv.freeCode)){
+				   ^
+MasterServer.java:477: error: variable s might not have been initialized
+				switch(s){
+				       ^
+MasterServer.java:525: error: variable s might not have been initialized
+				switch(s){
+				       ^
+MasterServer.java:547: error: exception IOException is never thrown in body of corresponding try statement
+						catch(IOException e){}
+						^
+MasterServer.java:481: error: unreported exception InterruptedException; must be caught or declared to be thrown
+							userLogIn();
+							         ^
+MasterServer.java:489: error: unreported exception InterruptedException; must be caught or declared to be thrown
+							registerUser();
+							            ^
+MasterServer.java:529: error: unreported exception InterruptedException; must be caught or declared to be thrown
+							grantServerRequest();
+							                  ^
+MasterServer.java:537: error: unreported exception InterruptedException; must be caught or declared to be thrown
+							auctionServer();
+							             ^
+MasterServer.java:545: error: unreported exception InterruptedException; must be caught or declared to be thrown
+							showServersRented();
+							                 ^
+MasterServer.java:553: error: unreported exception InterruptedException; must be caught or declared to be thrown
+							freeServer();
+							          ^
+MasterServer.java:561: error: unreported exception InterruptedException; must be caught or declared to be thrown
+							showUserDebt();
+							            ^
