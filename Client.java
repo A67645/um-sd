@@ -19,8 +19,8 @@ class Client {
 	public static PrintWriter out;
 	public static BufferedReader in;
 	public static Socket cs;
-	int static quit;
-	int static loggedIn;
+	public static int quit;
+	public static int loggedIn;
 		
 	public static void main(String[] args) throws Exception{
 		
