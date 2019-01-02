@@ -1,8 +1,279 @@
-MasterServer.java:436: error: run() in ClientHandler cannot implement run() in Runnable
+MasterServer.java:360: error: <identifier> expected
+		requestedServer.l.lock();
+		                      ^
+MasterServer.java:361: error: illegal start of type
+		try{
+		^
+MasterServer.java:361: error: ';' expected
+		try{
+		   ^
+MasterServer.java:362: error: illegal start of type
+			if(requestedServer.inUse == 'Y' ){				
+			^
+MasterServer.java:362: error: <identifier> expected
+			if(requestedServer.inUse == 'Y' ){				
+			  ^
+MasterServer.java:362: error: ';' expected
+			if(requestedServer.inUse == 'Y' ){				
+			   ^
+MasterServer.java:362: error: illegal start of type
+			if(requestedServer.inUse == 'Y' ){				
+			                  ^
+MasterServer.java:362: error: ';' expected
+			if(requestedServer.inUse == 'Y' ){				
+			                        ^
+MasterServer.java:368: error: <identifier> expected
+			out.print("What is your price offer?/n");
+			         ^
+MasterServer.java:368: error: illegal start of type
+			out.print("What is your price offer?/n");
+			          ^
+MasterServer.java:369: error: <identifier> expected
+			out.flush();
+			         ^
+MasterServer.java:371: error: illegal start of type
+			try{
+			^
+MasterServer.java:371: error: ';' expected
+			try{
+			   ^
+MasterServer.java:372: error: <identifier> expected
+				s = in.readLine();
+				 ^
+MasterServer.java:374: error: class, interface, or enum expected
+			catch(IOException e){}
+			^
+MasterServer.java:378: error: class, interface, or enum expected
+				out.flush();				
+				^
+MasterServer.java:379: error: class, interface, or enum expected
+				return;			
+				^
+MasterServer.java:380: error: class, interface, or enum expected
+			}
+			^
+MasterServer.java:384: error: class, interface, or enum expected
+				out.flush();
+				^
+MasterServer.java:385: error: class, interface, or enum expected
+				return;
+				^
+MasterServer.java:386: error: class, interface, or enum expected
+			}
+			^
+MasterServer.java:390: error: class, interface, or enum expected
+			requestedServer.auctionPrice = Float.parseFloat(s);
+			^
+MasterServer.java:391: error: class, interface, or enum expected
+			currentUser.debt += requestedServer.auctionPrice;
+			^
+MasterServer.java:392: error: class, interface, or enum expected
+			requestedServer.inUse = 'A';
+			^
+MasterServer.java:394: error: class, interface, or enum expected
+			out.print("Server rental sucessful! Your freeing code is: " + requestedServer.freeCode + "\n");
+			^
+MasterServer.java:395: error: class, interface, or enum expected
+			out.flush();
+			^
+MasterServer.java:396: error: class, interface, or enum expected
+		}
+		^
+MasterServer.java:399: error: class, interface, or enum expected
+		}
+		^
+MasterServer.java:402: error: class, interface, or enum expected
+	}
+	^
+MasterServer.java:407: error: class, interface, or enum expected
+		int id;
+		^
+MasterServer.java:408: error: class, interface, or enum expected
+		Server serv;
+		^
+MasterServer.java:410: error: class, interface, or enum expected
+		out.print("Please input the freeing code of the server you want to free.\n");
+		^
+MasterServer.java:411: error: class, interface, or enum expected
+		out.flush();
+		^
+MasterServer.java:413: error: class, interface, or enum expected
+		try{
+		^
+MasterServer.java:415: error: class, interface, or enum expected
+		}
+		^
+MasterServer.java:420: error: class, interface, or enum expected
+		for(int i = 0; i < userServers.size(); i++){
+		^
+MasterServer.java:420: error: class, interface, or enum expected
+		for(int i = 0; i < userServers.size(); i++){
+		               ^
+MasterServer.java:420: error: class, interface, or enum expected
+		for(int i = 0; i < userServers.size(); i++){
+		                                       ^
+MasterServer.java:423: error: class, interface, or enum expected
+			database.l.lock();
+			^
+MasterServer.java:424: error: class, interface, or enum expected
+			try{
+			^
+MasterServer.java:426: error: class, interface, or enum expected
+			}
+			^
+MasterServer.java:427: error: class, interface, or enum expected
+			finally{ database.l.unlock(); }
+			                              ^
+MasterServer.java:430: error: class, interface, or enum expected
+			try{
+			^
+MasterServer.java:434: error: class, interface, or enum expected
+					userServers.remove(i);
+					^
+MasterServer.java:436: error: class, interface, or enum expected
+					out.print("Server successfully freed.\n");
+					^
+MasterServer.java:437: error: class, interface, or enum expected
+					out.flush();
+					^
+MasterServer.java:438: error: class, interface, or enum expected
+					return;
+					^
+MasterServer.java:439: error: class, interface, or enum expected
+				}
+				^
+MasterServer.java:441: error: class, interface, or enum expected
+			finally{ serv.l.unlock(); }			
+			                          ^
+MasterServer.java:445: error: class, interface, or enum expected
+		out.flush();
+		^
+MasterServer.java:447: error: class, interface, or enum expected
+		return;
+		^
+MasterServer.java:448: error: class, interface, or enum expected
+	}
+	^
+MasterServer.java:453: error: class, interface, or enum expected
+		out.flush();
+		^
+MasterServer.java:455: error: class, interface, or enum expected
+		return;
+		^
+MasterServer.java:457: error: class, interface, or enum expected
+	}
+	^
+MasterServer.java:459: error: class, interface, or enum expected
 	public void run() throws InterruptedException{	
-	            ^
-  overridden method does not throw InterruptedException
-MasterServer.java:573: error: incompatible types: void cannot be converted to ClientHandler
-			ch = new ClientHandler(cs,database).start();		
-			                                         ^
-2 errors
+	       ^
+MasterServer.java:464: error: class, interface, or enum expected
+		int exit = 0;
+		^
+MasterServer.java:466: error: class, interface, or enum expected
+		while(exit == 0){
+		^
+MasterServer.java:470: error: class, interface, or enum expected
+				out.print("2-Register as new User./n");
+				^
+MasterServer.java:471: error: class, interface, or enum expected
+				out.print("3-Exit./n");
+				^
+MasterServer.java:472: error: class, interface, or enum expected
+				out.print("Select Option/n");
+				^
+MasterServer.java:473: error: class, interface, or enum expected
+				out.flush();
+				^
+MasterServer.java:475: error: class, interface, or enum expected
+				try{
+				^
+MasterServer.java:477: error: class, interface, or enum expected
+				}
+				^
+MasterServer.java:485: error: class, interface, or enum expected
+						}
+						^
+MasterServer.java:490: error: class, interface, or enum expected
+					case "2":
+					^
+MasterServer.java:493: error: class, interface, or enum expected
+						}
+						^
+MasterServer.java:499: error: class, interface, or enum expected
+					case "3":
+					^
+MasterServer.java:502: error: class, interface, or enum expected
+						out.close();
+						^
+MasterServer.java:503: error: class, interface, or enum expected
+						try{
+						^
+MasterServer.java:505: error: class, interface, or enum expected
+						}
+						^
+MasterServer.java:510: error: class, interface, or enum expected
+				}		
+				^
+MasterServer.java:516: error: class, interface, or enum expected
+				out.print("2-Bid on Server./n");
+				^
+MasterServer.java:517: error: class, interface, or enum expected
+				out.print("3-Show rented Servers./n");
+				^
+MasterServer.java:518: error: class, interface, or enum expected
+				out.print("4-Free a rented Server./n");
+				^
+MasterServer.java:519: error: class, interface, or enum expected
+				out.print("5-Show current debt./n");
+				^
+MasterServer.java:520: error: class, interface, or enum expected
+				out.print("6-Log out./n");
+				^
+MasterServer.java:521: error: class, interface, or enum expected
+				out.print("Select Option/n");
+				^
+MasterServer.java:523: error: class, interface, or enum expected
+				try{
+				^
+MasterServer.java:525: error: class, interface, or enum expected
+				}
+				^
+MasterServer.java:533: error: class, interface, or enum expected
+						}
+						^
+MasterServer.java:538: error: class, interface, or enum expected
+					case "2":
+					^
+MasterServer.java:541: error: class, interface, or enum expected
+						}
+						^
+MasterServer.java:546: error: class, interface, or enum expected
+					case "3":
+					^
+MasterServer.java:549: error: class, interface, or enum expected
+						}
+						^
+MasterServer.java:554: error: class, interface, or enum expected
+					case "4":
+					^
+MasterServer.java:557: error: class, interface, or enum expected
+						}
+						^
+MasterServer.java:562: error: class, interface, or enum expected
+					case "5":
+					^
+MasterServer.java:565: error: class, interface, or enum expected
+						}
+						^
+MasterServer.java:570: error: class, interface, or enum expected
+					case "6":
+					^
+MasterServer.java:573: error: class, interface, or enum expected
+						currentUser = null;
+						^
+MasterServer.java:575: error: class, interface, or enum expected
+					break;
+					^
+MasterServer.java:577: error: class, interface, or enum expected
+				}
+				^
