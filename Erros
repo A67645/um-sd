@@ -1,75 +1,81 @@
-Client.java:51: error: unreported exception IOException; must be caught or declared to be thrown
+Client.java:44: error: exception IOException is never thrown in body of corresponding try statement
+				catch(IOException e){}
+				^
+Client.java:50: error: exception IOException is never thrown in body of corresponding try statement
+				catch(IOException e){}
+				^
+Client.java:60: error: unreported exception IOException; must be caught or declared to be thrown
 			sIn = in.readLine();
 			                 ^
-Client.java:77: error: unreported exception IOException; must be caught or declared to be thrown
+Client.java:86: error: unreported exception IOException; must be caught or declared to be thrown
 				cs.close();
 				        ^
-Client.java:92: error: unreported exception IOException; must be caught or declared to be thrown
+Client.java:101: error: unreported exception IOException; must be caught or declared to be thrown
 			sIn = in.readLine();
 			                 ^
-Client.java:148: error: unreported exception IOException; must be caught or declared to be thrown
-		sIn = in.readLine();
-		                 ^
-Client.java:155: error: unreported exception IOException; must be caught or declared to be thrown
+Client.java:157: error: unreported exception IOException; must be caught or declared to be thrown
 		sIn = in.readLine();
 		                 ^
 Client.java:164: error: unreported exception IOException; must be caught or declared to be thrown
-			sIn = in.readLine();
-			                 ^
-Client.java:177: error: unreported exception IOException; must be caught or declared to be thrown
 		sIn = in.readLine();
 		                 ^
+Client.java:173: error: unreported exception IOException; must be caught or declared to be thrown
+			sIn = in.readLine();
+			                 ^
 Client.java:186: error: unreported exception IOException; must be caught or declared to be thrown
-			sIn = in.readLine();
-			                 ^
-Client.java:195: error: unreported exception IOException; must be caught or declared to be thrown
 		sIn = in.readLine();
 		                 ^
+Client.java:195: error: unreported exception IOException; must be caught or declared to be thrown
+			sIn = in.readLine();
+			                 ^
 Client.java:204: error: unreported exception IOException; must be caught or declared to be thrown
 		sIn = in.readLine();
 		                 ^
-Client.java:211: error: unreported exception IOException; must be caught or declared to be thrown
+Client.java:213: error: unreported exception IOException; must be caught or declared to be thrown
 		sIn = in.readLine();
 		                 ^
 Client.java:220: error: unreported exception IOException; must be caught or declared to be thrown
-			sIn = in.readLine();
-			                 ^
+		sIn = in.readLine();
+		                 ^
 Client.java:229: error: unreported exception IOException; must be caught or declared to be thrown
-		sIn = in.readLine();
-		                 ^
+			sIn = in.readLine();
+			                 ^
 Client.java:238: error: unreported exception IOException; must be caught or declared to be thrown
-			sIn = in.readLine();
-			                 ^
-Client.java:243: error: unreported exception IOException; must be caught or declared to be thrown
 		sIn = in.readLine();
 		                 ^
+Client.java:247: error: unreported exception IOException; must be caught or declared to be thrown
+			sIn = in.readLine();
+			                 ^
 Client.java:252: error: unreported exception IOException; must be caught or declared to be thrown
+		sIn = in.readLine();
+		                 ^
+Client.java:261: error: unreported exception IOException; must be caught or declared to be thrown
 			sIn = in.readLine();
 			                 ^
-Client.java:260: error: unreported exception IOException; must be caught or declared to be thrown
+Client.java:269: error: unreported exception IOException; must be caught or declared to be thrown
 		sIn = in.readLine();
 		                 ^
-Client.java:268: error: unreported exception IOException; must be caught or declared to be thrown
+Client.java:277: error: unreported exception IOException; must be caught or declared to be thrown
 			sIn = in.readLine();
 			                 ^
-Client.java:276: error: unreported exception IOException; must be caught or declared to be thrown
+Client.java:285: error: unreported exception IOException; must be caught or declared to be thrown
 		sIn = in.readLine();
 		                 ^
-Client.java:287: error: unreported exception IOException; must be caught or declared to be thrown
+Client.java:296: error: unreported exception IOException; must be caught or declared to be thrown
 		sIn = in.readLine();
 		                 ^
-Client.java:294: error: unreported exception IOException; must be caught or declared to be thrown
+Client.java:303: error: unreported exception IOException; must be caught or declared to be thrown
 		sIn = in.readLine();
 		                 ^
-Client.java:302: error: unreported exception IOException; must be caught or declared to be thrown
+Client.java:311: error: unreported exception IOException; must be caught or declared to be thrown
 		sIn = in.readLine();
 		                 ^
-Client.java:309: error: unreported exception IOException; must be caught or declared to be thrown
+Client.java:318: error: unreported exception IOException; must be caught or declared to be thrown
 		sIn = in.readLine();
 		                 ^
-Client.java:317: error: unreported exception IOException; must be caught or declared to be thrown
+Client.java:326: error: unreported exception IOException; must be caught or declared to be thrown
 			sIn = in.readLine();
 			                 ^
-Client.java:325: error: unreported exception IOException; must be caught or declared to be thrown
+Client.java:334: error: unreported exception IOException; must be caught or declared to be thrown
 		sIn = in.readLine();
 		                 ^
