@@ -455,9 +455,7 @@ class ClientHandler extends Thread {
 		
 	}
 	
-	public void run() throws InterruptedException{	
-	
-		try{
+	public void run(){	
 	
 		String s;
 		int exit = 0;
@@ -576,8 +574,6 @@ class ClientHandler extends Thread {
 				}
 			}
 		}	
-	}
-	catch(InterruptedException e){}
 	}
 }
 
