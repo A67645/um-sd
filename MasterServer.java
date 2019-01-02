@@ -93,8 +93,11 @@ class ClientHandler extends Thread {
 		out.println("What is your e-mail?\n");
 		out.flush();
 		
-		while(true){				
-			m = in.readLine(); 	//Exception
+		while(true){
+			try{
+				m = in.readLine(); 	
+			}
+			catch(IOException e){}
 			if(m == null){ 
 				out.print("Invalid e-mail!Try again!\n");
 				out.flush();
@@ -107,8 +110,11 @@ class ClientHandler extends Thread {
 		out.println("What is your password?\n");
 		out.flush();
 			
-		while(true){				
-			p = in.readLine(); 	//Exception
+		while(true){
+			try{			
+				p = in.readLine(); 
+			}	
+			catch(IOException e){}
 			if(p == null){ 
 				out.print("Invalid password!Try again!\n");
 				out.flush();
@@ -145,8 +151,11 @@ class ClientHandler extends Thread {
 		out.println("What is your e-mail?\n");
 		out.flush();
 		
-		while(true){				
-			m = in.readLine(); 	//Exception
+		while(true){		
+			try{
+				m = in.readLine();
+			}
+			catch(IOException e){}
 			if(m == null){ 
 				out.print("Invalid e-mail!Try again!\n");
 				out.flush();
@@ -169,8 +178,11 @@ class ClientHandler extends Thread {
 		out.println("What is your password?\n");
 		out.flush();
 			
-		while(true){				
-			p = in.readLine();	//Exception
+		while(true){
+			try{			
+				p = in.readLine();	
+			}
+			catch(IOException e){}
 			if(p == null){ 
 				out.print("Invalid password!Try again!\n");
 				out.flush();
@@ -260,7 +272,10 @@ class ClientHandler extends Thread {
 		out.print("Type Server ID to choose.\n");
 		out.flush();
 		
-		s = in.readLine();	//Exception
+		try{
+			s = in.readLine();	
+		}
+		catch(IOException e){}
 		
 		database.l.lock();
 		try{
@@ -321,14 +336,18 @@ class ClientHandler extends Thread {
 		out.print("Type Server ID to choose.\n");
 		out.flush();
 		
-		s = in.readLine();	//Exception
+		try{
+			s = in.readLine();
+		}
+		catch(IOException e){}
 		
 		database.l.lock();
 		try{
 			requestedServer = database.servers.get(Integer.parseInt(s));
 		}
 		finally{ 
-			//requestedServer.l.lock();
+			database.l.unlock();
+		}
 		
 			if(requestedServer == null){
 			
@@ -349,7 +368,10 @@ class ClientHandler extends Thread {
 			out.print("What is your price offer?/n");
 			out.flush();
 		
-			s = in.readLine();	//Exception
+			try{
+				s = in.readLine();
+			}
+			catch(IOException e){}
 		
 			if(Float.parseFloat(s) <= requestedServer.auctionPrice){				
 				out.print("Your offer does not beat the current offer!\n");
@@ -388,11 +410,12 @@ class ClientHandler extends Thread {
 		out.print("Please input the freeing code of the server you want to free.\n");
 		out.flush();
 		
-		s = in.readLine();	//Exception
+		try{
+			s = in.readLine();
+		}
+		catch(IOException e){}
 		
 		List<Integer> userServers = currentUser.userServers;
-		
-		//fazer lock dos servers
 		
 		for(int i = 0; i < userServers.size(); i++){
 			
@@ -435,6 +458,8 @@ class ClientHandler extends Thread {
 	
 	public void run() throws InterruptedException{	
 	
+		try{
+	
 		String s;
 		int exit = 0;
 		
@@ -447,19 +472,27 @@ class ClientHandler extends Thread {
 				out.print("Select Option/n");
 				out.flush();
 		
-				s = in.readLine();	//Exception
+				try{
+					s = in.readLine();
+				}
+				catch(IOException e){}
 			
 				switch(s){
 				
 					case "1":
-				
-						userLogIn();	//Exception
+						try{
+							userLogIn();
+						}
+						catch(IOException e){}
 				
 					break;
 				
 					case "2":
-				
-						registerUser();	//Exception
+						try{
+							registerUser();
+						}
+						catch(IOException e){}
+						
 				
 					break;
 				
@@ -467,7 +500,10 @@ class ClientHandler extends Thread {
 				
 						exit = 1;
 						out.close();
-						cs.close();	//Exception
+						try{
+							cs.close();
+						}
+						catch(IOException e){}
 				
 					break;
 				
@@ -483,38 +519,51 @@ class ClientHandler extends Thread {
 				out.print("5-Show current debt./n");
 				out.print("6-Log out./n");
 				out.print("Select Option/n");
-			
-				s = in.readLine();	//Exception
-			
+				
+				try{
+					s = in.readLine();
+				}
+				catch(IOException e){}
+						
 				switch(s){
 				
 					case "1":
-					
-						grantServerRequest();	//Exception
+						try{
+							grantServerRequest();
+						}
+						catch(IOException e){}
 				
 					break;
 				
 					case "2":
-					
-						auctionServer();	//Exception
+						try{
+							auctionServer();
+						}
+						catch(IOException e){}
 					
 					break;
 				
 					case "3":
-				
-						showServersRented();	//Exception
+						try{
+							showServersRented();
+						}
+						catch(IOException e){}
 				
 					break;
 					
 					case "4":
-				
-						freeServer();	//Exception
+						try{
+							freeServer();
+						}
+						catch(IOException e){}
 				
 					break;
 					
 					case "5":
-					
-						showUserDebt();
+						try{
+							showUserDebt();
+						}
+						catch(IOException e){}
 				
 					break;
 				
@@ -528,6 +577,8 @@ class ClientHandler extends Thread {
 				}
 			}
 		}	
+	}
+	catch(InterruptedException e){}
 	}
 }
 
@@ -565,12 +616,11 @@ class MasterServer {
 		
 		int port = 1111;
 		ServerSocket ss = new ServerSocket(port);
-		ClientHandler ch; // Acrescentei para não dar erro de non-static variable 
 		init();
 			
 		while(true){			
 			Socket cs = ss.accept();
-			ch = new ClientHandler(cs,database).start();		
+			new ClientHandler(cs,database).start();		
 		}		
 	}
 	
