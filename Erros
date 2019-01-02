@@ -1,4 +1,505 @@
+
 MasterServer.java:553: error: exception IOException is never thrown in body of corresponding try statement
 						catch(IOException e){}
 						^
 1 error
+
+
+_________________________________________________________________________
+
+Client.java:44: error: cannot find symbol
+		while(sIn.equals("Select Option/n") != true){	
+		      ^
+  symbol:   variable sIn
+  location: class Client
+Client.java:45: error: cannot find symbol
+			sIn = in.readLine();
+			^
+  symbol:   variable sIn
+  location: class Client
+Client.java:45: error: cannot find symbol
+			sIn = in.readLine();
+			      ^
+  symbol:   variable in
+  location: class Client
+Client.java:46: error: cannot find symbol
+			System.out.println(sIn);		
+			                   ^
+  symbol:   variable sIn
+  location: class Client
+Client.java:49: error: cannot find symbol
+		sOut = System.console().readLine();
+		^
+  symbol:   variable sOut
+  location: class Client
+Client.java:50: error: cannot find symbol
+		out.println(sOut);
+		            ^
+  symbol:   variable sOut
+  location: class Client
+Client.java:50: error: cannot find symbol
+		out.println(sOut);
+		^
+  symbol:   variable out
+  location: class Client
+Client.java:51: error: cannot find symbol
+		out.flush();
+		^
+  symbol:   variable out
+  location: class Client
+Client.java:53: error: cannot find symbol
+		switch(sOut){
+		       ^
+  symbol:   variable sOut
+  location: class Client
+Client.java:53: error: illegal start of type
+		switch(sOut){
+		      ^
+Client.java:69: error: cannot find symbol
+				quit = 1;
+				^
+  symbol:   variable quit
+  location: class Client
+Client.java:70: error: cannot find symbol
+				out.shutdownOutput();
+				^
+  symbol:   variable out
+  location: class Client
+Client.java:71: error: cannot find symbol
+				out.close();
+				^
+  symbol:   variable out
+  location: class Client
+Client.java:72: error: cannot find symbol
+				cs.close();
+				^
+  symbol:   variable cs
+  location: class Client
+Client.java:86: error: cannot find symbol
+		while(sIn.equals("Select Option/n") != true){	
+		      ^
+  symbol:   variable sIn
+  location: class Client
+Client.java:87: error: cannot find symbol
+			sIn = in.readLine();
+			^
+  symbol:   variable sIn
+  location: class Client
+Client.java:87: error: cannot find symbol
+			sIn = in.readLine();
+			      ^
+  symbol:   variable in
+  location: class Client
+Client.java:88: error: cannot find symbol
+			System.out.println(sIn);		
+			                   ^
+  symbol:   variable sIn
+  location: class Client
+Client.java:91: error: cannot find symbol
+		sOut = System.console().readLine();
+		^
+  symbol:   variable sOut
+  location: class Client
+Client.java:92: error: cannot find symbol
+		out.println(sOut);
+		            ^
+  symbol:   variable sOut
+  location: class Client
+Client.java:92: error: cannot find symbol
+		out.println(sOut);
+		^
+  symbol:   variable out
+  location: class Client
+Client.java:93: error: cannot find symbol
+		out.flush();
+		^
+  symbol:   variable out
+  location: class Client
+Client.java:95: error: cannot find symbol
+		switch(sOut){
+		       ^
+  symbol:   variable sOut
+  location: class Client
+Client.java:95: error: illegal start of type
+		switch(sOut){
+		      ^
+Client.java:129: error: cannot find symbol
+				loggedIn = 0;
+				^
+  symbol:   variable loggedIn
+  location: class Client
+Client.java:143: error: cannot find symbol
+		sIn = in.readLine();
+		^
+  symbol:   variable sIn
+  location: class Client
+Client.java:143: error: cannot find symbol
+		sIn = in.readLine();
+		      ^
+  symbol:   variable in
+  location: class Client
+Client.java:144: error: cannot find symbol
+		System.out.println(sIn);
+		                   ^
+  symbol:   variable sIn
+  location: class Client
+Client.java:146: error: cannot find symbol
+		sOut = System.console().readLine();
+		^
+  symbol:   variable sOut
+  location: class Client
+Client.java:147: error: cannot find symbol
+		out.println(sOut);
+		            ^
+  symbol:   variable sOut
+  location: class Client
+Client.java:147: error: cannot find symbol
+		out.println(sOut);
+		^
+  symbol:   variable out
+  location: class Client
+Client.java:148: error: cannot find symbol
+		out.flush();
+		^
+  symbol:   variable out
+  location: class Client
+Client.java:150: error: cannot find symbol
+		sIn = in.readLine();
+		^
+  symbol:   variable sIn
+  location: class Client
+Client.java:150: error: cannot find symbol
+		sIn = in.readLine();
+		      ^
+  symbol:   variable in
+  location: class Client
+Client.java:151: error: cannot find symbol
+		System.out.println(sIn);
+		                   ^
+  symbol:   variable sIn
+  location: class Client
+Client.java:153: error: cannot find symbol
+		while(sIn.compare("Invalid e-mail!Try again!/n")){
+		      ^
+  symbol:   variable sIn
+  location: class Client
+Client.java:155: error: cannot find symbol
+			sOut = System.console().readLine();
+			^
+  symbol:   variable sOut
+  location: class Client
+Client.java:156: error: cannot find symbol
+			out.println(sOut);
+			            ^
+  symbol:   variable sOut
+  location: class Client
+Client.java:156: error: cannot find symbol
+			out.println(sOut);
+			^
+  symbol:   variable out
+  location: class Client
+Client.java:157: error: cannot find symbol
+			out.flush();
+			^
+  symbol:   variable out
+  location: class Client
+Client.java:159: error: cannot find symbol
+			sIn = in.readLine();
+			^
+  symbol:   variable sIn
+  location: class Client
+Client.java:159: error: cannot find symbol
+			sIn = in.readLine();
+			      ^
+  symbol:   variable in
+  location: class Client
+Client.java:160: error: cannot find symbol
+			System.out.println(sIn);
+			                   ^
+  symbol:   variable sIn
+  location: class Client
+Client.java:164: error: cannot find symbol
+		if(sIn.compare("No user exists with that e-mail./n")){				
+		   ^
+  symbol:   variable sIn
+  location: class Client
+Client.java:168: error: cannot find symbol
+		sOut = System.console().readLine();
+		^
+  symbol:   variable sOut
+  location: class Client
+Client.java:169: error: cannot find symbol
+		out.println(sOut);
+		            ^
+  symbol:   variable sOut
+  location: class Client
+Client.java:169: error: cannot find symbol
+		out.println(sOut);
+		^
+  symbol:   variable out
+  location: class Client
+Client.java:170: error: cannot find symbol
+		out.flush();
+		^
+  symbol:   variable out
+  location: class Client
+Client.java:172: error: cannot find symbol
+		sIn = in.readLine();
+		^
+  symbol:   variable sIn
+  location: class Client
+Client.java:172: error: cannot find symbol
+		sIn = in.readLine();
+		      ^
+  symbol:   variable in
+  location: class Client
+Client.java:173: error: cannot find symbol
+		System.out.println(sIn);
+		                   ^
+  symbol:   variable sIn
+  location: class Client
+Client.java:175: error: cannot find symbol
+		while(sIn.compare("Invalid password!Try again!/n")){
+		      ^
+  symbol:   variable sIn
+  location: class Client
+Client.java:177: error: cannot find symbol
+			sOut = System.console().readLine();
+			^
+  symbol:   variable sOut
+  location: class Client
+Client.java:178: error: cannot find symbol
+			out.println(sOut);
+			            ^
+  symbol:   variable sOut
+  location: class Client
+Client.java:178: error: cannot find symbol
+			out.println(sOut);
+			^
+  symbol:   variable out
+  location: class Client
+Client.java:179: error: cannot find symbol
+			out.flush();
+			^
+  symbol:   variable out
+  location: class Client
+Client.java:181: error: cannot find symbol
+			sIn = in.readLine();
+			^
+  symbol:   variable sIn
+  location: class Client
+Client.java:181: error: cannot find symbol
+			sIn = in.readLine();
+			      ^
+  symbol:   variable in
+  location: class Client
+Client.java:182: error: cannot find symbol
+			System.out.println(sIn);
+			                   ^
+  symbol:   variable sIn
+  location: class Client
+Client.java:186: error: cannot find symbol
+		if(sIn.compare("Wrong password!/n")){					
+		   ^
+  symbol:   variable sIn
+  location: class Client
+Client.java:190: error: cannot find symbol
+		sIn = in.readLine();
+		^
+  symbol:   variable sIn
+  location: class Client
+Client.java:190: error: cannot find symbol
+		sIn = in.readLine();
+		      ^
+  symbol:   variable in
+  location: class Client
+Client.java:191: error: cannot find symbol
+		System.out.println(sIn);
+		                   ^
+  symbol:   variable sIn
+  location: class Client
+Client.java:192: error: cannot find symbol
+		loggedIn = 1;	
+		^
+  symbol:   variable loggedIn
+  location: class Client
+Client.java:199: error: cannot find symbol
+		sIn = in.readLine();
+		^
+  symbol:   variable sIn
+  location: class Client
+Client.java:199: error: cannot find symbol
+		sIn = in.readLine();
+		      ^
+  symbol:   variable in
+  location: class Client
+Client.java:200: error: cannot find symbol
+		System.out.println(sIn);
+		                   ^
+  symbol:   variable sIn
+  location: class Client
+Client.java:202: error: cannot find symbol
+		sOut = System.console().readLine();
+		^
+  symbol:   variable sOut
+  location: class Client
+Client.java:203: error: cannot find symbol
+		out.println(sOut);
+		            ^
+  symbol:   variable sOut
+  location: class Client
+Client.java:203: error: cannot find symbol
+		out.println(sOut);
+		^
+  symbol:   variable out
+  location: class Client
+Client.java:204: error: cannot find symbol
+		out.flush();
+		^
+  symbol:   variable out
+  location: class Client
+Client.java:206: error: cannot find symbol
+		sIn = in.readLine();
+		^
+  symbol:   variable sIn
+  location: class Client
+Client.java:206: error: cannot find symbol
+		sIn = in.readLine();
+		      ^
+  symbol:   variable in
+  location: class Client
+Client.java:207: error: cannot find symbol
+		System.out.println(sIn);
+		                   ^
+  symbol:   variable sIn
+  location: class Client
+Client.java:209: error: cannot find symbol
+		while(sIn.compare("Invalid e-mail!Try again!/n")){
+		      ^
+  symbol:   variable sIn
+  location: class Client
+Client.java:211: error: cannot find symbol
+			sOut = System.console().readLine();
+			^
+  symbol:   variable sOut
+  location: class Client
+Client.java:212: error: cannot find symbol
+			out.println(sOut);
+			            ^
+  symbol:   variable sOut
+  location: class Client
+Client.java:212: error: cannot find symbol
+			out.println(sOut);
+			^
+  symbol:   variable out
+  location: class Client
+Client.java:213: error: cannot find symbol
+			out.flush();
+			^
+  symbol:   variable out
+  location: class Client
+Client.java:215: error: cannot find symbol
+			sIn = in.readLine();
+			^
+  symbol:   variable sIn
+  location: class Client
+Client.java:215: error: cannot find symbol
+			sIn = in.readLine();
+			      ^
+  symbol:   variable in
+  location: class Client
+Client.java:216: error: cannot find symbol
+			System.out.println(sIn);
+			                   ^
+  symbol:   variable sIn
+  location: class Client
+Client.java:220: error: cannot find symbol
+		sOut = System.console().readLine();
+		^
+  symbol:   variable sOut
+  location: class Client
+Client.java:221: error: cannot find symbol
+		out.println(sOut);
+		            ^
+  symbol:   variable sOut
+  location: class Client
+Client.java:221: error: cannot find symbol
+		out.println(sOut);
+		^
+  symbol:   variable out
+  location: class Client
+Client.java:222: error: cannot find symbol
+		out.flush();
+		^
+  symbol:   variable out
+  location: class Client
+Client.java:224: error: cannot find symbol
+		sIn = in.readLine();
+		^
+  symbol:   variable sIn
+  location: class Client
+Client.java:224: error: cannot find symbol
+		sIn = in.readLine();
+		      ^
+  symbol:   variable in
+  location: class Client
+Client.java:225: error: cannot find symbol
+		System.out.println(sIn);
+		                   ^
+  symbol:   variable sIn
+  location: class Client
+Client.java:227: error: cannot find symbol
+		while(sIn.compare("Invalid password!Try again!/n")){
+		      ^
+  symbol:   variable sIn
+  location: class Client
+Client.java:229: error: cannot find symbol
+			sOut = System.console().readLine();
+			^
+  symbol:   variable sOut
+  location: class Client
+Client.java:230: error: cannot find symbol
+			out.println(sOut);
+			            ^
+  symbol:   variable sOut
+  location: class Client
+Client.java:230: error: cannot find symbol
+			out.println(sOut);
+			^
+  symbol:   variable out
+  location: class Client
+Client.java:231: error: cannot find symbol
+			out.flush();
+			^
+  symbol:   variable out
+  location: class Client
+Client.java:233: error: cannot find symbol
+			sIn = in.readLine();
+			^
+  symbol:   variable sIn
+  location: class Client
+Client.java:233: error: cannot find symbol
+			sIn = in.readLine();
+			      ^
+  symbol:   variable in
+  location: class Client
+Client.java:234: error: cannot find symbol
+			System.out.println(sIn);
+			                   ^
+  symbol:   variable sIn
+  location: class Client
+Client.java:238: error: cannot find symbol
+		sIn = in.readLine();
+		^
+  symbol:   variable sIn
+  location: class Client
+Client.java:238: error: cannot find symbol
+		sIn = in.readLine();
+		      ^
+  symbol:   variable in
+  location: class Client
+Client.java:239: error: cannot find symbol
+		System.out.println(sIn);
+		                   ^
+  symbol:   variable sIn
+  location: class Client
