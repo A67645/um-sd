@@ -1,51 +1,13 @@
-Client.java:73: error: cannot find symbol
-				quit = 1;
-				^
-  symbol:   variable quit
-  location: class Client
-Client.java:74: error: cannot find symbol
-				out.shutdownOutput();
-				   ^
-  symbol:   method shutdownOutput()
-  location: variable out of type PrintWriter
-Client.java:133: error: cannot find symbol
-				loggedIn = 0;
-				^
-  symbol:   variable loggedIn
-  location: class Client
-Client.java:157: error: cannot find symbol
-		while(sIn.compare("Invalid e-mail!Try again!/n")){
-		         ^
-  symbol:   method compare(String)
-  location: variable sIn of type String
-Client.java:168: error: cannot find symbol
-		if(sIn.compare("No user exists with that e-mail./n")){				
-		      ^
-  symbol:   method compare(String)
-  location: variable sIn of type String
-Client.java:179: error: cannot find symbol
-		while(sIn.compare("Invalid password!Try again!/n")){
-		         ^
-  symbol:   method compare(String)
-  location: variable sIn of type String
-Client.java:190: error: cannot find symbol
-		if(sIn.compare("Wrong password!/n")){					
-		      ^
-  symbol:   method compare(String)
-  location: variable sIn of type String
-Client.java:196: error: cannot find symbol
-		loggedIn = 1;	
-		^
-  symbol:   variable loggedIn
-  location: class Client
-Client.java:213: error: cannot find symbol
-		while(sIn.compare("Invalid e-mail!Try again!/n")){
-		         ^
-  symbol:   method compare(String)
-  location: variable sIn of type String
-Client.java:231: error: cannot find symbol
-		while(sIn.compare("Invalid password!Try again!/n")){
-		         ^
-  symbol:   method compare(String)
-  location: variable sIn of type String
-10 errors
+Client.java:22: error: <identifier> expected
+	int static quit;
+	   ^
+Client.java:22: error: <identifier> expected
+	int static quit;
+	               ^
+Client.java:23: error: <identifier> expected
+	int static loggedIn;
+	   ^
+Client.java:23: error: <identifier> expected
+	int static loggedIn;
+	                   ^
+4 errors
