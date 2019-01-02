@@ -1,320 +1,51 @@
-Client.java:27: error: non-static variable cs cannot be referenced from a static context
-		cs = new Socket(host, port);
-		^
-Client.java:28: error: non-static variable out cannot be referenced from a static context
-		out = new PrintWriter(cs.getOutputStream());
-		^
-Client.java:28: error: non-static variable cs cannot be referenced from a static context
-		out = new PrintWriter(cs.getOutputStream());
-		                      ^
-Client.java:29: error: non-static variable in cannot be referenced from a static context
-		in = new BufferedReader(new InputStreamReader(cs.getInputStream()));
-		^
-Client.java:29: error: non-static variable cs cannot be referenced from a static context
-		in = new BufferedReader(new InputStreamReader(cs.getInputStream()));
-		                                              ^
-Client.java:48: error: non-static variable sIn cannot be referenced from a static context
-		while(sIn.equals("Select Option/n") != true){	
-		      ^
-Client.java:49: error: non-static variable sIn cannot be referenced from a static context
-			sIn = in.readLine();
-			^
-Client.java:49: error: non-static variable in cannot be referenced from a static context
-			sIn = in.readLine();
-			      ^
-Client.java:50: error: non-static variable sIn cannot be referenced from a static context
-			System.out.println(sIn);		
-			                   ^
-Client.java:53: error: non-static variable sOut cannot be referenced from a static context
-		sOut = System.console().readLine();
-		^
-Client.java:54: error: non-static variable sOut cannot be referenced from a static context
-		out.println(sOut);
-		            ^
-Client.java:54: error: non-static variable out cannot be referenced from a static context
-		out.println(sOut);
-		^
-Client.java:55: error: non-static variable out cannot be referenced from a static context
-		out.flush();
-		^
-Client.java:57: error: non-static variable sOut cannot be referenced from a static context
-		switch(sOut){
-		       ^
 Client.java:73: error: cannot find symbol
 				quit = 1;
 				^
   symbol:   variable quit
   location: class Client
-Client.java:74: error: non-static variable out cannot be referenced from a static context
-				out.shutdownOutput();
-				^
 Client.java:74: error: cannot find symbol
 				out.shutdownOutput();
 				   ^
   symbol:   method shutdownOutput()
   location: variable out of type PrintWriter
-Client.java:75: error: non-static variable out cannot be referenced from a static context
-				out.close();
-				^
-Client.java:76: error: non-static variable cs cannot be referenced from a static context
-				cs.close();
-				^
-Client.java:90: error: non-static variable sIn cannot be referenced from a static context
-		while(sIn.equals("Select Option/n") != true){	
-		      ^
-Client.java:91: error: non-static variable sIn cannot be referenced from a static context
-			sIn = in.readLine();
-			^
-Client.java:91: error: non-static variable in cannot be referenced from a static context
-			sIn = in.readLine();
-			      ^
-Client.java:92: error: non-static variable sIn cannot be referenced from a static context
-			System.out.println(sIn);		
-			                   ^
-Client.java:95: error: non-static variable sOut cannot be referenced from a static context
-		sOut = System.console().readLine();
-		^
-Client.java:96: error: non-static variable sOut cannot be referenced from a static context
-		out.println(sOut);
-		            ^
-Client.java:96: error: non-static variable out cannot be referenced from a static context
-		out.println(sOut);
-		^
-Client.java:97: error: non-static variable out cannot be referenced from a static context
-		out.flush();
-		^
-Client.java:99: error: non-static variable sOut cannot be referenced from a static context
-		switch(sOut){
-		       ^
 Client.java:133: error: cannot find symbol
 				loggedIn = 0;
 				^
   symbol:   variable loggedIn
   location: class Client
-Client.java:147: error: non-static variable sIn cannot be referenced from a static context
-		sIn = in.readLine();
-		^
-Client.java:147: error: non-static variable in cannot be referenced from a static context
-		sIn = in.readLine();
-		      ^
-Client.java:148: error: non-static variable sIn cannot be referenced from a static context
-		System.out.println(sIn);
-		                   ^
-Client.java:150: error: non-static variable sOut cannot be referenced from a static context
-		sOut = System.console().readLine();
-		^
-Client.java:151: error: non-static variable sOut cannot be referenced from a static context
-		out.println(sOut);
-		            ^
-Client.java:151: error: non-static variable out cannot be referenced from a static context
-		out.println(sOut);
-		^
-Client.java:152: error: non-static variable out cannot be referenced from a static context
-		out.flush();
-		^
-Client.java:154: error: non-static variable sIn cannot be referenced from a static context
-		sIn = in.readLine();
-		^
-Client.java:154: error: non-static variable in cannot be referenced from a static context
-		sIn = in.readLine();
-		      ^
-Client.java:155: error: non-static variable sIn cannot be referenced from a static context
-		System.out.println(sIn);
-		                   ^
-Client.java:157: error: non-static variable sIn cannot be referenced from a static context
-		while(sIn.compare("Invalid e-mail!Try again!/n")){
-		      ^
 Client.java:157: error: cannot find symbol
 		while(sIn.compare("Invalid e-mail!Try again!/n")){
 		         ^
   symbol:   method compare(String)
   location: variable sIn of type String
-Client.java:159: error: non-static variable sOut cannot be referenced from a static context
-			sOut = System.console().readLine();
-			^
-Client.java:160: error: non-static variable sOut cannot be referenced from a static context
-			out.println(sOut);
-			            ^
-Client.java:160: error: non-static variable out cannot be referenced from a static context
-			out.println(sOut);
-			^
-Client.java:161: error: non-static variable out cannot be referenced from a static context
-			out.flush();
-			^
-Client.java:163: error: non-static variable sIn cannot be referenced from a static context
-			sIn = in.readLine();
-			^
-Client.java:163: error: non-static variable in cannot be referenced from a static context
-			sIn = in.readLine();
-			      ^
-Client.java:164: error: non-static variable sIn cannot be referenced from a static context
-			System.out.println(sIn);
-			                   ^
-Client.java:168: error: non-static variable sIn cannot be referenced from a static context
-		if(sIn.compare("No user exists with that e-mail./n")){				
-		   ^
 Client.java:168: error: cannot find symbol
 		if(sIn.compare("No user exists with that e-mail./n")){				
 		      ^
   symbol:   method compare(String)
   location: variable sIn of type String
-Client.java:172: error: non-static variable sOut cannot be referenced from a static context
-		sOut = System.console().readLine();
-		^
-Client.java:173: error: non-static variable sOut cannot be referenced from a static context
-		out.println(sOut);
-		            ^
-Client.java:173: error: non-static variable out cannot be referenced from a static context
-		out.println(sOut);
-		^
-Client.java:174: error: non-static variable out cannot be referenced from a static context
-		out.flush();
-		^
-Client.java:176: error: non-static variable sIn cannot be referenced from a static context
-		sIn = in.readLine();
-		^
-Client.java:176: error: non-static variable in cannot be referenced from a static context
-		sIn = in.readLine();
-		      ^
-Client.java:177: error: non-static variable sIn cannot be referenced from a static context
-		System.out.println(sIn);
-		                   ^
-Client.java:179: error: non-static variable sIn cannot be referenced from a static context
-		while(sIn.compare("Invalid password!Try again!/n")){
-		      ^
 Client.java:179: error: cannot find symbol
 		while(sIn.compare("Invalid password!Try again!/n")){
 		         ^
   symbol:   method compare(String)
   location: variable sIn of type String
-Client.java:181: error: non-static variable sOut cannot be referenced from a static context
-			sOut = System.console().readLine();
-			^
-Client.java:182: error: non-static variable sOut cannot be referenced from a static context
-			out.println(sOut);
-			            ^
-Client.java:182: error: non-static variable out cannot be referenced from a static context
-			out.println(sOut);
-			^
-Client.java:183: error: non-static variable out cannot be referenced from a static context
-			out.flush();
-			^
-Client.java:185: error: non-static variable sIn cannot be referenced from a static context
-			sIn = in.readLine();
-			^
-Client.java:185: error: non-static variable in cannot be referenced from a static context
-			sIn = in.readLine();
-			      ^
-Client.java:186: error: non-static variable sIn cannot be referenced from a static context
-			System.out.println(sIn);
-			                   ^
-Client.java:190: error: non-static variable sIn cannot be referenced from a static context
-		if(sIn.compare("Wrong password!/n")){					
-		   ^
 Client.java:190: error: cannot find symbol
 		if(sIn.compare("Wrong password!/n")){					
 		      ^
   symbol:   method compare(String)
   location: variable sIn of type String
-Client.java:194: error: non-static variable sIn cannot be referenced from a static context
-		sIn = in.readLine();
-		^
-Client.java:194: error: non-static variable in cannot be referenced from a static context
-		sIn = in.readLine();
-		      ^
-Client.java:195: error: non-static variable sIn cannot be referenced from a static context
-		System.out.println(sIn);
-		                   ^
 Client.java:196: error: cannot find symbol
 		loggedIn = 1;	
 		^
   symbol:   variable loggedIn
   location: class Client
-Client.java:203: error: non-static variable sIn cannot be referenced from a static context
-		sIn = in.readLine();
-		^
-Client.java:203: error: non-static variable in cannot be referenced from a static context
-		sIn = in.readLine();
-		      ^
-Client.java:204: error: non-static variable sIn cannot be referenced from a static context
-		System.out.println(sIn);
-		                   ^
-Client.java:206: error: non-static variable sOut cannot be referenced from a static context
-		sOut = System.console().readLine();
-		^
-Client.java:207: error: non-static variable sOut cannot be referenced from a static context
-		out.println(sOut);
-		            ^
-Client.java:207: error: non-static variable out cannot be referenced from a static context
-		out.println(sOut);
-		^
-Client.java:208: error: non-static variable out cannot be referenced from a static context
-		out.flush();
-		^
-Client.java:210: error: non-static variable sIn cannot be referenced from a static context
-		sIn = in.readLine();
-		^
-Client.java:210: error: non-static variable in cannot be referenced from a static context
-		sIn = in.readLine();
-		      ^
-Client.java:211: error: non-static variable sIn cannot be referenced from a static context
-		System.out.println(sIn);
-		                   ^
-Client.java:213: error: non-static variable sIn cannot be referenced from a static context
-		while(sIn.compare("Invalid e-mail!Try again!/n")){
-		      ^
 Client.java:213: error: cannot find symbol
 		while(sIn.compare("Invalid e-mail!Try again!/n")){
 		         ^
   symbol:   method compare(String)
   location: variable sIn of type String
-Client.java:215: error: non-static variable sOut cannot be referenced from a static context
-			sOut = System.console().readLine();
-			^
-Client.java:216: error: non-static variable sOut cannot be referenced from a static context
-			out.println(sOut);
-			            ^
-Client.java:216: error: non-static variable out cannot be referenced from a static context
-			out.println(sOut);
-			^
-Client.java:217: error: non-static variable out cannot be referenced from a static context
-			out.flush();
-			^
-Client.java:219: error: non-static variable sIn cannot be referenced from a static context
-			sIn = in.readLine();
-			^
-Client.java:219: error: non-static variable in cannot be referenced from a static context
-			sIn = in.readLine();
-			      ^
-Client.java:220: error: non-static variable sIn cannot be referenced from a static context
-			System.out.println(sIn);
-			                   ^
-Client.java:224: error: non-static variable sOut cannot be referenced from a static context
-		sOut = System.console().readLine();
-		^
-Client.java:225: error: non-static variable sOut cannot be referenced from a static context
-		out.println(sOut);
-		            ^
-Client.java:225: error: non-static variable out cannot be referenced from a static context
-		out.println(sOut);
-		^
-Client.java:226: error: non-static variable out cannot be referenced from a static context
-		out.flush();
-		^
-Client.java:228: error: non-static variable sIn cannot be referenced from a static context
-		sIn = in.readLine();
-		^
-Client.java:228: error: non-static variable in cannot be referenced from a static context
-		sIn = in.readLine();
-		      ^
-Client.java:229: error: non-static variable sIn cannot be referenced from a static context
-		System.out.println(sIn);
-		                   ^
-Client.java:231: error: non-static variable sIn cannot be referenced from a static context
-		while(sIn.compare("Invalid password!Try again!/n")){
-		      ^
 Client.java:231: error: cannot find symbol
 		while(sIn.compare("Invalid password!Try again!/n")){
 		         ^
   symbol:   method compare(String)
   location: variable sIn of type String
+10 errors
