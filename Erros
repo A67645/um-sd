@@ -1,8 +1,15 @@
 
-MasterServer.java:553: error: exception IOException is never thrown in body of corresponding try statement
-						catch(IOException e){}
-						^
-1 error
+MasterServer.java:621: error: unreported exception IOException; must be caught or declared to be thrown
+		ServerSocket ss = new ServerSocket(port);
+		                  ^
+MasterServer.java:625: error: unreported exception IOException; must be caught or declared to be thrown
+			Socket cs = ss.accept();
+			                     ^
+MasterServer.java:626: error: unreported exception IOException; must be caught or declared to be thrown
+			new ClientHandler(cs,database).start();		
+			^
+3 errors
+
 
 
 _________________________________________________________________________
