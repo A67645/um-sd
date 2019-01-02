@@ -14,11 +14,11 @@ import java.util.*;
 
 class Client {
 		
-	public String sIn;
-	public String sOut;
-	public PrintWriter out;
-	public BufferedReader in;
-	public Socket cs;
+	public static String sIn;
+	public static String sOut;
+	public static PrintWriter out;
+	public static BufferedReader in;
+	public static Socket cs;
 		
 	public static void main(String[] args) throws Exception{
 		
