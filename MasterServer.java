@@ -349,14 +349,13 @@ class ClientHandler extends Thread {
 			database.l.unlock();
 		}
 		
-			if(requestedServer == null){
+		if(requestedServer == null){
 			
-				out.print("A server with that ID does not exist!\n");
-				out.flush();
-				return;		
-			}
+			out.print("A server with that ID does not exist!\n");
+			out.flush();
+			return;		
 		}
-		
+				
 		requestedServer.l.lock();
 		try{
 			if(requestedServer.inUse == 'Y' ){				
