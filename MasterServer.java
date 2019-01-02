@@ -531,45 +531,45 @@ class ClientHandler extends Thread {
 					case "1":
 						try{
 							grantServerRequest();
-							catch(InterruptedException ie){}
 						}
 						catch(IOException e){}
+						catch(InterruptedException ie){}
 				
 					break;
 				
 					case "2":
 						try{
 							auctionServer();
-							catch(InterruptedException ie){}
 						}
 						catch(IOException e){}
+						catch(InterruptedException ie){}
 					
 					break;
 				
 					case "3":
 						try{
 							showServersRented();
-							catch(InterruptedException ie){}
 						}
 						catch(IOException e){}
+						catch(InterruptedException ie){}
 				
 					break;
 					
 					case "4":
 						try{
 							freeServer();
-							catch(InterruptedException ie){}
 						}
 						catch(IOException e){}
+						catch(InterruptedException ie){}
 				
 					break;
 					
 					case "5":
 						try{
 							showUserDebt();
-							catch(InterruptedException ie){}
 						}
 						catch(IOException e){}
+						catch(InterruptedException ie){}
 				
 					break;
 				
