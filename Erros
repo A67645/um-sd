@@ -1,16 +1,4 @@
-MasterServer.java:534: error: 'catch' without 'try'
-							catch(InterruptedException ie){}
-							^
-MasterServer.java:543: error: 'catch' without 'try'
-							catch(InterruptedException ie){}
-							^
-MasterServer.java:552: error: 'catch' without 'try'
-							catch(InterruptedException ie){}
-							^
-MasterServer.java:561: error: 'catch' without 'try'
-							catch(InterruptedException ie){}
-							^
-MasterServer.java:570: error: 'catch' without 'try'
-							catch(InterruptedException ie){}
-							^
-5 errors
+MasterServer.java:553: error: exception IOException is never thrown in body of corresponding try statement
+						catch(IOException e){}
+						^
+1 error
