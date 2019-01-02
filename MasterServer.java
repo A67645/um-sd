@@ -618,12 +618,16 @@ class MasterServer {
 	public static void main(String[] args){
 		
 		int port = 1111;
-		ServerSocket ss = new ServerSocket(port);
+		ServerSocket ss;
 		init();
 			
-		while(true){			
-			Socket cs = ss.accept();
-			new ClientHandler(cs,database).start();		
+		while(true){	
+			try{
+				ss = new ServerSocket(port);
+				Socket cs = ss.accept();
+				new ClientHandler(cs,database).start();
+			}
+			catch(IOException e){}
 		}		
 	}
 	
