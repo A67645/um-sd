@@ -550,7 +550,6 @@ class ClientHandler extends Thread {
 						try{
 							showServersRented();
 						}
-						catch(IOException e){}
 						catch(InterruptedException ie){}
 				
 					break;
