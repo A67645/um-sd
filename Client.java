@@ -26,19 +26,28 @@ class Client {
 		
 		String host = args[0];
 		int port = Integer.parseInt(args[1]);
-		cs = new Socket(host, port);
-		out = new PrintWriter(cs.getOutputStream());
-		in = new BufferedReader(new InputStreamReader(cs.getInputStream()));
-	
 		quit = 0; 
 		loggedIn = 0;
 		
+		try{
+			cs = new Socket(host, port);
+			out = new PrintWriter(cs.getOutputStream());
+			in = new BufferedReader(new InputStreamReader(cs.getInputStream()));
+		}
+		catch(IOException e){}	
+		
 		while(quit == 0){
 			if(loggedIn == 0){
-				mainMenu();
+				try{
+					mainMenu();
+				}
+				catch(IOException e){}
 			}
 			else{
-				loggedInMenu();
+				try{
+					loggedInMenu();
+				}
+				catch(IOException e){}
 			}
 		}
 		
