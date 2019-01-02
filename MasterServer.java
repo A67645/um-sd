@@ -87,7 +87,8 @@ class ClientHandler extends Thread {
 	
 	private void registerUser() throws InterruptedException, IOException{
 							
-		String m,p;
+		String m = null;
+		String p = null;
 		User aux;
 		
 		out.println("What is your e-mail?\n");
@@ -145,7 +146,8 @@ class ClientHandler extends Thread {
 	
 	private void userLogIn() throws InterruptedException, IOException{
 								
-		String m,p;
+		String m = null;
+		String p = null;
 		User aux;
 		
 		out.println("What is your e-mail?\n");
@@ -250,7 +252,7 @@ class ClientHandler extends Thread {
 		String name;
 		char type;
 		float price;
-		String s;
+		String s = null;
 		Server requestedServer;
 		
 		out.print("Pick a server from the List: \n");
@@ -314,7 +316,7 @@ class ClientHandler extends Thread {
 		String name;
 		char type;
 		float price;
-		String s;
+		String s = null;
 		Server requestedServer = null;
 
 		out.print("Pick a server from the List: \n");
@@ -402,7 +404,7 @@ class ClientHandler extends Thread {
 	
 	private void freeServer() throws InterruptedException, IOException{
 		
-		String s;
+		String s = null;
 		int id;
 		Server serv;
 		
@@ -457,7 +459,7 @@ class ClientHandler extends Thread {
 	
 	public void run(){	
 	
-		String s;
+		String s = null;
 		int exit = 0;
 		
 		while(exit == 0){
@@ -481,6 +483,7 @@ class ClientHandler extends Thread {
 							userLogIn();
 						}
 						catch(IOException e){}
+						catch(InterruptedException ie){}
 				
 					break;
 				
@@ -489,6 +492,7 @@ class ClientHandler extends Thread {
 							registerUser();
 						}
 						catch(IOException e){}
+						catch(InterruptedException ie){}
 						
 				
 					break;
@@ -527,6 +531,7 @@ class ClientHandler extends Thread {
 					case "1":
 						try{
 							grantServerRequest();
+							catch(InterruptedException ie){}
 						}
 						catch(IOException e){}
 				
@@ -535,6 +540,7 @@ class ClientHandler extends Thread {
 					case "2":
 						try{
 							auctionServer();
+							catch(InterruptedException ie){}
 						}
 						catch(IOException e){}
 					
@@ -543,6 +549,7 @@ class ClientHandler extends Thread {
 					case "3":
 						try{
 							showServersRented();
+							catch(InterruptedException ie){}
 						}
 						catch(IOException e){}
 				
@@ -551,6 +558,7 @@ class ClientHandler extends Thread {
 					case "4":
 						try{
 							freeServer();
+							catch(InterruptedException ie){}
 						}
 						catch(IOException e){}
 				
@@ -559,6 +567,7 @@ class ClientHandler extends Thread {
 					case "5":
 						try{
 							showUserDebt();
+							catch(InterruptedException ie){}
 						}
 						catch(IOException e){}
 				
