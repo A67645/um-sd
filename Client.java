@@ -19,6 +19,8 @@ class Client {
 	public static PrintWriter out;
 	public static BufferedReader in;
 	public static Socket cs;
+	int static quit;
+	int static loggedIn;
 		
 	public static void main(String[] args) throws Exception{
 		
@@ -28,8 +30,8 @@ class Client {
 		out = new PrintWriter(cs.getOutputStream());
 		in = new BufferedReader(new InputStreamReader(cs.getInputStream()));
 	
-		int quit = 0; 
-		int loggedIn = 0;
+		quit = 0; 
+		loggedIn = 0;
 		
 		while(quit == 0){
 			if(loggedIn == 0){
@@ -71,7 +73,6 @@ class Client {
 			case "3":
 			
 				quit = 1;
-				out.shutdownOutput();
 				out.close();
 				cs.close();
 			
@@ -154,7 +155,7 @@ class Client {
 		sIn = in.readLine();
 		System.out.println(sIn);
 				
-		while(sIn.compare("Invalid e-mail!Try again!/n")){
+		while(sIn.equals("Invalid e-mail!Try again!/n")){
 					
 			sOut = System.console().readLine();
 			out.println(sOut);
@@ -165,7 +166,7 @@ class Client {
 					
 		}
 				
-		if(sIn.compare("No user exists with that e-mail./n")){					
+		if(sIn.equals("No user exists with that e-mail./n")){					
 			return;				
 		}
 				
@@ -176,7 +177,7 @@ class Client {
 		sIn = in.readLine();
 		System.out.println(sIn);
 				
-		while(sIn.compare("Invalid password!Try again!/n")){
+		while(sIn.equals("Invalid password!Try again!/n")){
 					
 			sOut = System.console().readLine();
 			out.println(sOut);
@@ -187,7 +188,7 @@ class Client {
 					
 		}
 				
-		if(sIn.compare("Wrong password!/n")){					
+		if(sIn.equals("Wrong password!/n")){					
 			return;				
 		}				
 				
@@ -210,7 +211,7 @@ class Client {
 		sIn = in.readLine();
 		System.out.println(sIn);
 				
-		while(sIn.compare("Invalid e-mail!Try again!/n")){
+		while(sIn.equals("Invalid e-mail!Try again!/n")){
 					
 			sOut = System.console().readLine();
 			out.println(sOut);
@@ -228,7 +229,7 @@ class Client {
 		sIn = in.readLine();
 		System.out.println(sIn);
 				
-		while(sIn.compare("Invalid password!Try again!/n")){
+		while(sIn.equals("Invalid password!Try again!/n")){
 					
 			sOut = System.console().readLine();
 			out.println(sOut);
