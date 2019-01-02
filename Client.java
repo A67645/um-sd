@@ -14,16 +14,20 @@ import java.util.*;
 
 class Client {
 		
+	public String sIn;
+	public String sOut;
+	public PrintWriter out;
+	public BufferedReader in;
+	public Socket cs;
+		
 	public static void main(String[] args) throws Exception{
 		
 		String host = args[0];
 		int port = Integer.parseInt(args[1]);
-		Socket cs = new Socket(host, port);
-		PrintWriter out = new PrintWriter(cs.getOutputStream());
-		BufferedReader in = new BufferedReader(new InputStreamReader(cs.getInputStream()));
+		cs = new Socket(host, port);
+		out = new PrintWriter(cs.getOutputStream());
+		in = new BufferedReader(new InputStreamReader(cs.getInputStream()));
 	
-		String sIn;
-		String sOut;
 		int quit = 0; 
 		int loggedIn = 0;
 		
