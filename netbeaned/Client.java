@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class Client {
 		
-	public static String sIn;
+	public static String sIn = "null";
 	public static String sOut;
 	public static PrintWriter out;
 	public static BufferedReader in;
@@ -39,13 +39,25 @@ public class Client {
 	}
 	
 	private static void mainMenu(){
-		
-		while(sIn.equals("Select Option/n") != true){	
+		try{
+                          sIn = in.readLine();
+                }
+		catch(IOException e){}
+                if(sIn == null){
+                    System.out.println("Resultado do readLine NULL");
+                }
+            
+		while(sIn.equals("Select Option/n") != true && sIn != null){	
 			try{
                             sIn = in.readLine();
 			}
 			catch(IOException e){}
-			System.out.println(sIn);		
+                        if(sIn == null){
+                            System.out.println("Resultado do readLine NULL");
+                            break;
+                        }
+                        System.out.println(sIn);
+                        
 		}
 		
 		sOut = System.console().readLine();
