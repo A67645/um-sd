@@ -77,12 +77,17 @@ class ClientHandler extends Thread {
 	BufferedReader in;	// mudei a atribuição para o ClientHandler
 	
 	Database database;
+        
+        int mode;
 	
-	ClientHandler(Socket cs, Database database) throws IOException { // Exception
-		this.cs = cs;
+	ClientHandler(Socket cs, Database database, int mode) throws IOException {		
+                this.mode = mode;
 		this.database = database;
-		this.out = new PrintWriter(cs.getOutputStream()); // mudei a atribuição para o ClientHandler
-		this.in = new BufferedReader(new InputStreamReader(cs.getInputStream())); // mudei a atribuição para o ClientHandler
+                if(mode  == 2){
+                    this.out = new PrintWriter(cs.getOutputStream()); // mudei a atribuição para o ClientHandler
+                    this.in = new BufferedReader(new InputStreamReader(cs.getInputStream())); // mudei a atribuição para o ClientHandler
+                    this.cs = cs;     
+                }
 	}
 	
 	private void registerUser() throws InterruptedException, IOException{
@@ -90,35 +95,66 @@ class ClientHandler extends Thread {
 		String m = null;
 		String p = null;
 		User aux;
+                Scanner sc = new Scanner(System.in);
 		
-		out.println("What is your e-mail?\n");
-		out.flush();
-		
+                if(mode == 2){
+                    out.println("What is your e-mail?\n");
+                    out.flush();
+                }
+                else{
+                    System.out.println("What is your e-mail?\n");
+                }
+	
 		while(true){
-			try{
-				m = in.readLine(); 	
-			}
-			catch(IOException e){}
+			if(mode == 2){
+                            try{
+                                m = in.readLine(); 
+                            }
+                            catch(IOException e){}
+                        }
+                        else{
+                            m = sc.nextLine();
+                        } 
 			if(m == null){ 
-				out.print("Invalid e-mail!Try again!\n");
-				out.flush();
+                                if(mode == 2){
+                                    out.println("Invalid e-mail!Try again!\n");
+                                    out.flush();
+                                }
+                                else{
+                                    System.out.println("Invalid e-mail!Try again!\n");
+                                }
 			}
 			else{
 				break;
 			}			
 		}
+		
+                if(mode == 2){
+                    out.println("What is your password?\n");
+                    out.flush();
+                }
+                else{
+                    System.out.println("What is your password?\n");
+                }
 			
-		out.println("What is your password?\n");
-		out.flush();
-			
-		while(true){
-			try{			
-				p = in.readLine(); 
-			}	
-			catch(IOException e){}
+		while(true){	                  
+                        if(mode == 2){
+                            try{
+                                p = in.readLine(); 
+                            }
+                            catch(IOException e){}
+                        }
+                        else{
+                            p = sc.nextLine();
+                        }                            
 			if(p == null){ 
-				out.print("Invalid password!Try again!\n");
-				out.flush();
+                                if(mode == 2){
+                                    out.println("Invalid password!Try again!\n");
+                                    out.flush();
+                                }
+                                else{
+                                    System.out.println("Invalid password!Try again!\n");
+                                }
 			}
 			else{
 				break;
@@ -129,14 +165,24 @@ class ClientHandler extends Thread {
 			
 		database.l.lock();
 		try{
-			if(database.users.get(m) != null){
+			if(database.users.get(m) == null){
 				database.users.put(m,aux);
-				out.println("User registered successfully.\n");
-				out.flush();
+                                if(mode == 2){
+                                    out.println("User registered successfully.\n");
+                                    out.flush();
+                                }
+                                else{
+                                    System.out.println("User registered successfully.\n");
+                                }
 			}
 			else{
-				out.println("E-mail already exists. User not registered.\n");
-				out.flush();			
+                                if(mode == 2){
+                                    out.println("E-mail already exists. User not registered.\n");
+                                    out.flush();
+                                }
+                                else{
+                                    System.out.println("E-mail already exists. User not registered.\n");
+                                }
 			}
 		}
 		finally{ database.l.unlock(); }
@@ -148,18 +194,34 @@ class ClientHandler extends Thread {
 		String m = null;
 		String p = null;
 		User aux;
+                Scanner sc = new Scanner(System.in);
 		
-		out.println("What is your e-mail?\n");
-		out.flush();
+                if(mode == 2){
+                    out.println("What is your e-mail?\n");
+                    out.flush();
+                }
+                else{
+                    System.out.println("What is your e-mail?\n");
+                }
 		
 		while(true){		
-			try{
-				m = in.readLine();
-			}
-			catch(IOException e){}
+			if(mode == 2){
+                            try{
+                                m = in.readLine(); 
+                            }
+                            catch(IOException e){}
+                        }
+                        else{
+                            m = sc.nextLine();
+                        } 
 			if(m == null){ 
-				out.print("Invalid e-mail!Try again!\n");
-				out.flush();
+                                if(mode == 2){
+                                    out.println("Invalid e-mail!Try again!\n");
+                                    out.flush();
+                                }
+                                else{
+                                    System.out.println("Invalid e-mail!Try again!\n");
+                                }
 			}
 			else{
 				break;
@@ -169,24 +231,44 @@ class ClientHandler extends Thread {
 		database.l.lock();
 		try{
 			if(database.users.get(m) == null){				
-				out.print("No user exists with that e-mail.\n");
-				out.flush();				
+                                if(mode == 2){
+                                    out.println("No user exists with that e-mail.\n");
+                                    out.flush();
+                                }
+                                else{
+                                    System.out.println("No user exists with that e-mail.\n");
+                                }
 				return;			
 			}
 		}
 		finally{ database.l.unlock(); }
 			
-		out.println("What is your password?\n");
-		out.flush();
+		if(mode == 2){
+                    out.println("What is your password?\n");
+                    out.flush();
+                }
+                else{
+                    System.out.println("What is your password?\n");
+                }
 			
 		while(true){
-			try{			
-				p = in.readLine();	
-			}
-			catch(IOException e){}
+			if(mode == 2){
+                            try{
+                                p = in.readLine(); 
+                            }
+                            catch(IOException e){}
+                        }
+                        else{
+                            p = sc.nextLine();
+                        }
 			if(p == null){ 
-				out.print("Invalid password!Try again!\n");
-				out.flush();
+                                if(mode == 2){
+                                    out.println("Invalid password!Try again!\n");
+                                    out.flush();
+                                }
+                                else{
+                                    System.out.println("Invalid password!Try again!\n");
+                                }
 			}
 			else{
 				break;
@@ -195,23 +277,33 @@ class ClientHandler extends Thread {
 			
 		database.l.lock();
 		try{
-			aux = database.users.get(m);
+                    aux = database.users.get(m);
 		}
 		finally{ database.l.unlock(); }
 			
 		aux.l.lock();
 			
-		if(!aux.password.equals(m)){			
-			out.print("Wrong password!\n");
-			out.flush();
+		if(!aux.password.equals(p)){			
+                        if(mode == 2){
+                            out.println("Wrong password!\n");
+                            out.flush();
+                        }
+                        else{
+                            System.out.println("Wrong password!\n");
+                        }
 			aux.l.unlock();
 			return;				
 		}
 			
 		currentUser = aux;
-			
-		out.print("LogIn sucessful!\n");
-		out.flush();
+
+                if(mode == 2){
+                    out.println("LogIn sucessful!\n");
+                    out.flush();
+                }
+                else{
+                    System.out.println("LogIn sucessful!\n");
+                }
 		
 	}
 	
@@ -221,8 +313,6 @@ class ClientHandler extends Thread {
 		String name;
 		String code;
 		char type;
-		float requestPrice;
-		float auctionPrice;
 		
 		List<Integer> userServers = currentUser.userServers;
 		
@@ -235,13 +325,24 @@ class ClientHandler extends Thread {
 				code = database.servers.get(id).freeCode; //Alterei de freeCode para code
 				type = database.servers.get(id).type;
 			
-				out.print("Server id = " + i + "; Server name = " + name + "; Server type = " + type + "; Server freeing code = " + code + "; \n");		
+                                if(mode == 2){
+                                    out.println("Server id = " + id + "; Server name = " + name + "; Server type = " + type + "; Server freeing code = " + code + "; \n");
+                                    out.flush();
+                                }
+				else{
+                                    System.out.println("Server id = " + id + "; Server name = " + name + "; Server type = " + type + "; Server freeing code = " + code + "; \n");
+                                }		
 			}
 		}
 		finally{ database.l.unlock(); }
-		
-		out.print("List End./n");
-		out.flush();
+                
+                if(mode == 2){
+                    out.println("List End.");
+                    out.flush();
+                }
+                else{
+                    System.out.println("List End.");
+                }
 		
 	}
 	
@@ -252,8 +353,14 @@ class ClientHandler extends Thread {
 		float price;
 		String s = null;
 		Server requestedServer;
-		
-		out.print("Pick a server from the List: \n");
+                Scanner sc = new Scanner(System.in);
+                
+		if(mode == 2){
+                    out.println("Pick a server from the List:");
+                }
+                else{
+                    System.out.println("Pick a server from the List:");
+                }
 		
 		database.l.lock();
 		try{
@@ -262,39 +369,63 @@ class ClientHandler extends Thread {
 					name = database.servers.get(id).name;
 					type = database.servers.get(id).type;
 					price = database.servers.get(id).requestPrice;
-			
-					out.print("ID: " + id + "; Name: " + name + "; Type: " + type + "; Price: " + price + ";\n");
+                                        if(mode == 2){
+                                            out.println("ID: " + id + "; Name: " + name + "; Type: " + type + "; Price: " + price + ";");
+                                        }
+                                        else{
+                                            System.out.println("ID: " + id + "; Name: " + name + "; Type: " + type + "; Price: " + price + ";");
+                                        }
 				}
 			}
 		}
 		finally{ database.l.lock(); }
 		
-		out.print("Type Server ID to choose.\n");
-		out.flush();
+                if(mode == 2){
+                    out.println("Type Server ID to choose.");
+                    out.flush();
+                }
+                else{
+                    System.out.println("Type Server ID to choose.");
+                }
 		
-		try{
-			s = in.readLine();	
-		}
-		catch(IOException e){}
+		if(mode == 2){
+                    try{
+                        s = in.readLine(); 
+                    }
+                    catch(IOException e){}
+                }
+                else{
+                    s = sc.nextLine();
+                } 
 		
 		database.l.lock();
 		try{
 			requestedServer = database.servers.get(Integer.parseInt(s));
 		}
+                catch(NumberFormatException n){ requestedServer = null; }
 		finally{ database.l.unlock(); }
 			
 		if(requestedServer == null){
-				
-			out.print("A server with that ID does not exist!\n");
+                    if(mode == 2){
+			out.println("A server with that ID does not exist!");
 			out.flush();
+                    }
+                    else{
+                        System.out.println("A server with that ID does not exist!");
+                    }
 			return;		
 		}
 			
 		requestedServer.l.lock();
 		try{
-			if(requestedServer.inUse == 'Y' ){			
-				out.print("Server already in use!\n");
+			if(requestedServer.inUse == 'Y' ){
+                            if(mode == 2){
+				out.println("Server already in use!");
 				out.flush();
+                            }
+                            else{
+                                System.out.println("Server already in use!");
+                            }
 				return;
 			}
 		
@@ -302,8 +433,13 @@ class ClientHandler extends Thread {
 			currentUser.debt += requestedServer.requestPrice;
 			requestedServer.inUse = 'Y';
 		
-			out.print("Server rental sucessful! Your freeing code is: " + requestedServer.freeCode + "\n");
-			out.flush();
+                        if(mode == 2){
+                            out.println("Server rental sucessful! Your freeing code is: " + requestedServer.freeCode);
+                            out.flush();
+                        }
+                        else{
+                            System.out.println("Server rental sucessful! Your freeing code is: " + requestedServer.freeCode);
+                        }
 		}
 		finally{ requestedServer.l.unlock(); }
 	}
@@ -315,9 +451,15 @@ class ClientHandler extends Thread {
 		float price;
 		String s = null;
 		Server requestedServer = null;
-
-		out.print("Pick a server from the List: \n");
-		
+                Scanner sc = new Scanner(System.in);
+                
+                if(mode == 2){
+                    out.println("Pick a server from the List:");
+                }
+                else{
+                    System.out.println("Pick a server from the List:");
+                }
+                    		
 		database.l.lock();
 		try{
 			for(int id: database.servers.keySet()){		
@@ -325,61 +467,105 @@ class ClientHandler extends Thread {
 					name = database.servers.get(id).name;
 					type = database.servers.get(id).type;
 					price = database.servers.get(id).auctionPrice;
-				
-					out.print("ID: " + id + "; Name: " + name + "; Type: " + type + "; Current Offer: " + price + ";\n");
+                                    
+                                    if(mode == 2){    
+					out.println("ID: " + id + "; Name: " + name + "; Type: " + type + "; Current Offer: " + price + ";");
+                                    }
+                                    else{
+                                        System.out.println("ID: " + id + "; Name: " + name + "; Type: " + type + "; Current Offer: " + price + ";");
+                                    }
 				}
 			}
 		}
 		finally{ database.l.unlock(); }
 		
-		out.print("Type Server ID to choose.\n");
-		out.flush();
+                if(mode == 2){
+                    out.println("Type Server ID to choose.");
+                    out.flush();
+                }
+                else{
+                    System.out.println("Type Server ID to choose.");
+                }
 		
-		try{
-			s = in.readLine();
-		}
-		catch(IOException e){}
+		if(mode == 2){
+                    try{
+                        s = in.readLine(); 
+                    }
+                    catch(IOException e){}
+                }
+                else{
+                    s = sc.nextLine();
+                } 
 		
 		database.l.lock();
 		try{
 			requestedServer = database.servers.get(Integer.parseInt(s));
 		}
-		finally{ 
-			database.l.unlock();
-		}
+                catch(NumberFormatException n){ requestedServer = null; }
+		finally{ database.l.unlock(); }
 		
 		if(requestedServer == null){
 			
-			out.print("A server with that ID does not exist!\n");
+                    if(mode == 2){
+			out.println("A server with that ID does not exist!");
 			out.flush();
+                    }
+                    else{
+                        System.out.println("A server with that ID does not exist!");
+                    }
 			return;		
 		}
 				
 		requestedServer.l.lock();
 		try{
-			if(requestedServer.inUse == 'Y' ){				
-				out.print("Server already in use!\n");
+			if(requestedServer.inUse == 'Y' ){	
+                            if(mode == 2){
+				out.println("Server already in use!");
 				out.flush();
-				return;	
+                            }
+                            else{
+                                System.out.println("Server already in use!");
+                            }
+                            return;	
 			}
+                        
+                        if(mode == 2){
+                            out.println("What is your price offer?");
+                            out.flush();
+                        }
+                        else{
+                            System.out.println("What is your price offer?");
+                        }
 		
-			out.print("What is your price offer?/n");
-			out.flush();
+			if(mode == 2){
+                            try{
+                                s = in.readLine(); 
+                                }
+                            catch(IOException e){}
+                        }
+                        else{
+                            s = sc.nextLine();
+                        } 
 		
-			try{
-				s = in.readLine();
-			}
-			catch(IOException e){}
-		
-			if(Float.parseFloat(s) <= requestedServer.auctionPrice){				
-				out.print("Your offer does not beat the current offer!\n");
-				out.flush();				
-				return;			
-			}
-		
-			if(Float.parseFloat(s) >= requestedServer.requestPrice){			
-				out.print("Your offer is equal or better to the server's request price! Use the request server option instead!/n");
+			if(Float.parseFloat(s) <= requestedServer.auctionPrice){
+                            if(mode == 2){
+				out.println("Your offer does not beat the current offer!");
 				out.flush();
+                            }
+                            else{
+                                System.out.println("Your offer does not beat the current offer!");
+                            }
+                            return;			
+			}
+		
+			if(Float.parseFloat(s) >= requestedServer.requestPrice){
+                                if(mode == 2){
+                                    out.println("Your offer is equal or better to the server's request price! Use the request server option instead!");
+                                    out.flush();
+                                }
+                                else{
+                                    System.out.println("Your offer is equal or better to the server's request price! Use the request server option instead!");
+                                }
 				return;
 			}
 		
@@ -389,8 +575,13 @@ class ClientHandler extends Thread {
 			currentUser.debt += requestedServer.auctionPrice;
 			requestedServer.inUse = 'A';
 		
-			out.print("Server rental sucessful! Your freeing code is: " + requestedServer.freeCode + "\n");
-			out.flush();
+                        if(mode == 2){
+                            out.println("Server rental sucessful! Your freeing code is: " + requestedServer.freeCode + "\n");
+                            out.flush();
+                        }
+                        else{
+                            System.out.println("Server rental sucessful! Your freeing code is: " + requestedServer.freeCode + "\n");
+                        }
 		}
 		finally{ 
 			requestedServer.l.unlock(); 
@@ -403,14 +594,25 @@ class ClientHandler extends Thread {
 		String s = "0";
 		int id;
 		Server serv;
+                Scanner sc = new Scanner(System.in);
 		
-		out.print("Please input the freeing code of the server you want to free.\n");
-		out.flush();
+                if(mode == 2){
+                    out.println("Please input the freeing code of the server you want to free.\n");
+                    out.flush();
+                }
+                else{
+                    System.out.println("Please input the freeing code of the server you want to free.\n");
+                }
 		
-		try{
-			s = in.readLine();
-		}
-		catch(IOException e){}
+		if(mode == 2){
+                    try{
+                        s = in.readLine(); 
+                        }
+                    catch(IOException e){}
+                }
+                else{
+                    s = sc.nextLine();
+                }  
 		
 		List<Integer> userServers = currentUser.userServers;
 		
@@ -428,27 +630,39 @@ class ClientHandler extends Thread {
 				if(s.equals(serv.freeCode)){
 					
 					serv.inUse = 'N';
+                                        serv.auctionPrice = 0;
 					userServers.remove(i);
 					
-					out.print("Server successfully freed.\n");
-					out.flush();
+                                        if(mode == 2){
+                                                out.println("Server successfully freed.\n");
+                                                out.flush();
+                                        }
+                                        else{
+                                            System.out.println("Server successfully freed.\n");
+                                        }                                       
 					return;
 				}
 			}
 			finally{ serv.l.unlock(); }			
-		}
-		
-		out.print("You not currently renting a server with the given freeing code.\n");
-		out.flush();
-		
+                }
+                
+                if(mode == 2){
+                        out.println("You are not currently renting a server with the given freeing code.\n");
+                        out.flush();
+                }
+                else{
+                        System.out.println("You are not currently renting a server with the given freeing code.\n");
+                }  		
 	}
 	
-	private void showUserDebt() throws IOException, InterruptedException{
-		
-		out.print("Your current debt is: " + currentUser.debt + ".\n");
-		out.flush();
-		
-		
+	private void showUserDebt() throws IOException, InterruptedException{		
+                if(mode == 2){
+                    out.println("Your current debt is: " + currentUser.debt + ".\n");
+                    out.flush();
+                }
+                else{
+                    System.out.println("Your current debt is: " + currentUser.debt + ".\n");
+                }	
 	}
 	
         @Override
@@ -456,20 +670,35 @@ class ClientHandler extends Thread {
 	
 		String s = "0";
 		int exit = 0;
+                Scanner sc = new Scanner(System.in);
 		
 		while(exit == 0){
 		
 			if(currentUser == null){
-				out.print("1-Log In./n");
-				out.print("2-Register as new User./n");
-				out.print("3-Exit./n");
-				out.print("Select Option/n");
-				out.flush();
+                                
+                                if(mode == 2){
+                                    out.println("1-Log In. ");
+                                    out.println("2-Register as new User. ");
+                                    out.println("3-Exit. ");
+                                    out.println("Select Option ");
+                                    out.flush();
+                                }
+                                else{
+                                    System.out.println("1-Log In. ");
+                                    System.out.println("2-Register as new User. ");
+                                    System.out.println("3-Exit. ");
+                                    System.out.println("Select Option ");
+                                }
 		
-				try{
-					s = in.readLine();
-				}
-				catch(IOException e){}
+				if(mode == 2){
+                                    try{
+                                        s = in.readLine(); 
+                                    }
+                                    catch(IOException e){}
+                                }
+                                else{
+                                    s = sc.nextLine();
+                                } 
 			
 				switch(s){
 				
@@ -495,11 +724,13 @@ class ClientHandler extends Thread {
 					case "3":
 				
 						exit = 1;
-						out.close();
-						try{
-							cs.close();
-						}
-						catch(IOException e){}
+                                                if(mode == 2){
+                                                    out.close();
+                                                    try{
+                                                    	cs.close();
+                                                    }
+                                                    catch(IOException e){}                                                   
+                                                }
 				
 					break;
 				
@@ -507,19 +738,35 @@ class ClientHandler extends Thread {
 			}	
 		
 			else{
-			
-				out.print("1-Request Server./n");
-				out.print("2-Bid on Server./n");
-				out.print("3-Show rented Servers./n");
-				out.print("4-Free a rented Server./n");
-				out.print("5-Show current debt./n");
-				out.print("6-Log out./n");
-				out.print("Select Option/n");
+                                if(mode == 2){
+                                    out.println("1-Request Server. ");
+                                    out.println("2-Bid on Server. ");
+                                    out.println("3-Show rented Servers. ");
+                                    out.println("4-Free a rented Server. ");
+                                    out.println("5-Show current debt. ");
+                                    out.println("6-Log out. ");
+                                    out.println("Select Option ");
+                                    out.flush();
+                                }
+                                else{
+                                    System.out.println("1-Request Server. ");
+                                    System.out.println("2-Bid on Server. ");
+                                    System.out.println("3-Show rented Servers. ");
+                                    System.out.println("4-Free a rented Server. ");
+                                    System.out.println("5-Show current debt. ");
+                                    System.out.println("6-Log out. ");
+                                    System.out.println("Select Option ");
+                                }
 				
-				try{
-					s = in.readLine();
-				}
-				catch(IOException e){}
+				if(mode == 2){
+                                    try{
+                                        s = in.readLine(); 
+                                    }
+                                    catch(IOException e){}
+                                }
+                                else{
+                                    s = sc.nextLine();
+                                } 
 						
 				switch(s){
 				
@@ -605,6 +852,8 @@ class MasterServer {
 		database.servers.put(8,serv);
 		serv = new Server(9,"database600",40.0f,"HVYWA",'C');
 		database.servers.put(8,serv);
+                User use = new User("email","password");
+                database.users.put("email",use);
 				
 	}
 	
@@ -612,16 +861,34 @@ class MasterServer {
 		
 		int port = 1111;
 		ServerSocket ss;
+                int mode;
+                Scanner sc = new Scanner(System.in);
+                
 		init();
-			
-		while(true){	
-			try{
-				ss = new ServerSocket(port);
-				Socket cs = ss.accept();
-				new ClientHandler(cs,database).start();
-			}
-			catch(IOException e){}
-		}		
+               		
+                System.out.println("Input 1 for standalone mode, 2 for client mode. "); 
+                mode = Integer.parseInt(sc.nextLine());
+                
+                if(mode == 2){              
+                    while(true){	
+                        try{
+                            ss = new ServerSocket(port);
+                            Socket cs = ss.accept();
+                            new ClientHandler(cs,database,mode).start();
+                        }
+                    	catch(IOException e){}
+                    }	
+                }
+                if(mode == 1){                                               
+                    try{
+                        Socket cs = null;
+                            new ClientHandler(cs,database,mode).start();
+                    }
+                    catch(IOException e){}
+                            
+                    while(true){                                                              
+                    }
+                }
 	}
 	
 }
