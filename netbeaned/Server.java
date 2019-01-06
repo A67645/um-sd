@@ -37,6 +37,7 @@ class Server{
 	float auctionPrice;
 	char inUse;
 	char type;
+        String userEmail;
 	String freeCode;
 	Lock l;
 	
@@ -50,6 +51,7 @@ class Server{
 		this.type = type;
 		this.auctionPrice = 0;
 		this.l = new ReentrantLock();
+                this.userEmail = "empty";
 	}
 	
 }
@@ -432,6 +434,7 @@ class ClientHandler extends Thread {
 			currentUser.userServers.add(requestedServer.serverId); //Alterei de id para serverId
 			currentUser.debt += requestedServer.requestPrice;
 			requestedServer.inUse = 'Y';
+                        requestedServer.userEmail = currentUser.email;
 		
                         if(mode == 2){
                             out.println("Server rental sucessful! Your freeing code is: " + requestedServer.freeCode);
@@ -452,6 +455,7 @@ class ClientHandler extends Thread {
 		String s = null;
 		Server requestedServer = null;
                 Scanner sc = new Scanner(System.in);
+                User oldUser;
                 
                 if(mode == 2){
                     out.println("Pick a server from the List:");
@@ -574,6 +578,27 @@ class ClientHandler extends Thread {
 			requestedServer.auctionPrice = Float.parseFloat(s);
 			currentUser.debt += requestedServer.auctionPrice;
 			requestedServer.inUse = 'A';
+                        
+                        database.l.lock();
+                        try{
+                            oldUser = database.users.get(requestedServer.userEmail);
+                            
+                            if(oldUser != null){
+                                oldUser.l.lock();
+                                try{
+                                    for(int i = 0; i < oldUser.userServers.size(); i++){
+                                        if(oldUser.userServers.get(i)==requestedServer.serverId){
+                                            oldUser.userServers.remove(i);
+                                            break;
+                                        }
+                                    }
+                                }
+                                finally{oldUser.l.unlock();}
+                            }                           
+                        }
+                        finally{database.l.unlock();}
+                        
+                        requestedServer.userEmail = currentUser.email;
 		
                         if(mode == 2){
                             out.println("Server rental sucessful! Your freeing code is: " + requestedServer.freeCode + "\n");
@@ -631,6 +656,7 @@ class ClientHandler extends Thread {
 					
 					serv.inUse = 'N';
                                         serv.auctionPrice = 0;
+                                        serv.userEmail = "empty";
 					userServers.remove(i);
 					
                                         if(mode == 2){
@@ -854,6 +880,8 @@ class MasterServer {
 		database.servers.put(8,serv);
                 User use = new User("email","password");
                 database.users.put("email",use);
+                use = new User("password","email");
+                database.users.put("password",use);
 				
 	}
 	
